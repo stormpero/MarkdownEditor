@@ -14,48 +14,18 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-<<<<<<< HEAD
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QHBoxLayout" name="boxl"/>
     </item>
    </layout>
-=======
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>350</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>0</y>
-      <width>791</width>
-      <height>341</height>
-     </rect>
-    </property>
-   </widget>
->>>>>>> 46c63e5c44b5f9fa884b967244c0b3f8e487ffb7
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-<<<<<<< HEAD
      <width>800</width>
-=======
-     <width>979</width>
->>>>>>> 46c63e5c44b5f9fa884b967244c0b3f8e487ffb7
      <height>21</height>
     </rect>
    </property>
