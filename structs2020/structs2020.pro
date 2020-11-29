@@ -18,10 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    markdowntohtml.cpp \
     toolbar.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    markdowntohtml.h
 
 FORMS += \
     mainwindow.ui

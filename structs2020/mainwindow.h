@@ -24,11 +24,18 @@ private:
 private:
     QToolBar* createMainToolBar();
     QToolBar* createExtraToolBar();
+    QToolBar* createWorkToolBar();
+
+private:
+    QToolBar *WorkToolBar;
 
 private slots:
     void MarkdowneditCheck();
     void PreviewCheck();
     void HtmlCheck();
+    void CreateNewFile();
+    void OpenFile();
+
 
 
 
