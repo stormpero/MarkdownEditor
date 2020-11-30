@@ -38,6 +38,7 @@ private slots:
     void HtmlCheck();
     void CreateNewFile();
     void OpenFile();
+    int SaveFileAs();
 
 //Help functions
 private:
@@ -49,10 +50,12 @@ private:
     QPlainTextEdit *MarkdowntextEdit;
     QTextBrowser* TextPreview;
     QTextBrowser* htmlPreview;
+
     //Иконки
     QAction* html_ico;
     QAction* text_ico;
     QAction* markdown_ico;
+
     //Файл, с которым происходит работа
     QFile file;
 

@@ -6,6 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //set title & ico
+    setWindowTitle("Markdown Editor");
+    setWindowIcon(QIcon(":/img/window_ico.ico"));
+
+    //Create Texteditors & Textviews
     MarkdowntextEdit = new QPlainTextEdit;
     TextPreview = new QTextBrowser;
     htmlPreview = new QTextBrowser;
@@ -15,7 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
     MarkdowntextEdit->hide();
     TextPreview->hide();
     htmlPreview->hide();
-    //Создание Toolbar
+
+    //Create Toolbar
     addToolBar(Qt::TopToolBarArea,createMainToolBar());
     WorkToolBar = createWorkToolBar();
     addToolBar(Qt::TopToolBarArea,WorkToolBar);

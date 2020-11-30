@@ -74,6 +74,31 @@ void MainWindow::HtmlCheck()
     }
 }
 
+void MainWindow::CreateNewFile()
+{
+    checkForChanges();
+    QString fileName = QFileDialog::getSaveFileName(0, "Создать файл", "*.markdown");
+    if(fileName.isEmpty())
+    {
+        qDebug() << "Write path is empty";
+        return;
+    }
+    file.setFileName(fileName);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error while opening for writing";
+        return;
+    }
+
+    markdown_ico->setDisabled(false);
+    html_ico->setDisabled(false);
+    text_ico->setDisabled(false);
+    WorkToolBar->setDisabled(false);
+
+    markdown_ico->setChecked(true);
+    MarkdowntextEdit->show();
+}
+
 void MainWindow::OpenFile()
 {
     checkForChanges();
@@ -102,27 +127,7 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
 }
 
-void MainWindow::CreateNewFile()
+int MainWindow::SaveFileAs()
 {
-    checkForChanges();
-    QString fileName = QFileDialog::getSaveFileName(0, "Создать файл", "*.markdown");
-    if(fileName.isEmpty())
-    {
-        qDebug() << "Write path is empty";
-        return;
-    }
-    file.setFileName(fileName);
-    if (!file.open(QIODevice::WriteOnly))
-    {
-        qDebug() << "Error while opening for writing";
-        return;
-    }
 
-    markdown_ico->setDisabled(false);
-    html_ico->setDisabled(false);
-    text_ico->setDisabled(false);
-    WorkToolBar->setDisabled(false);
-
-    markdown_ico->setChecked(true);
-    MarkdowntextEdit->show();
 }
