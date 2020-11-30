@@ -55,5 +55,7 @@ private:
     QAction* markdown_ico;
     //Файл, с которым происходит работа
     QFile file;
+
+    bool isChanged = false;
 };
 #endif // MAINWINDOW_H

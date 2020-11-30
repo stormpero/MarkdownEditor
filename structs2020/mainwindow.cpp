@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
-    connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]() { TextPreview->setMarkdown(MarkdowntextEdit->toPlainText()); });
+    connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]() { isChanged = true; TextPreview->setMarkdown(MarkdowntextEdit->toPlainText()); });
 }
 
 MainWindow::~MainWindow()
