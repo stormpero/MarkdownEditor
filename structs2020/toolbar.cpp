@@ -1,12 +1,10 @@
 #include "mainwindow.h"
-#include <QToolBar>
 
 QToolBar* MainWindow::createMainToolBar()
 {
     QToolBar* bar = new QToolBar("Main ToolBar");
     bar->addAction(QPixmap(":/img/Toolbar/newfile.ico"), "Создать файл", this, SLOT(CreateNewFile()));
     bar->addAction(QPixmap(":/img/Toolbar/openfile.ico"), "Открыть файл", this, SLOT(OpenFile()));
-    bar->addSeparator();
     bar->setMovable(false);
     bar->setIconSize(QSize(35,35));
 
@@ -38,6 +36,9 @@ QToolBar* MainWindow::createExtraToolBar()
     html_ico->setDisabled(true);
     text_ico->setDisabled(true);
 
+    markdown_ico->setCheckable(true);
+    html_ico->setCheckable(true);
+    text_ico->setCheckable(true);
 
     bar->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
     bar->setMovable(false);
@@ -75,10 +76,53 @@ void MainWindow::HtmlCheck()
 
 void MainWindow::OpenFile()
 {
+    checkForChanges();
+    QString fileName = QFileDialog::getOpenFileName(0, "Открыть файл", "", "*.markdown");
+    if(fileName.isEmpty())
+    {
+        qDebug() << "Read and write paths are empty";
+        return;
+    }
+    file.setFileName(fileName);
+    if (!file.open(QIODevice::ReadWrite))
+    {
+        qDebug() << "Error while opening for writing and reading";
+        return;
+    }
+
+    MarkdowntextEdit->setPlainText(file.readAll());
+
+    file.close();
+    markdown_ico->setDisabled(false);
+    html_ico->setDisabled(false);
+    text_ico->setDisabled(false);
     WorkToolBar->setDisabled(false);
+
+    markdown_ico->setChecked(true);
+    MarkdowntextEdit->show();
 }
 
 void MainWindow::CreateNewFile()
 {
+    checkForChanges();
+    QString fileName = QFileDialog::getSaveFileName(0, "Создать файл", "*.markdown");
+    if(fileName.isEmpty())
+    {
+        qDebug() << "Write path is empty";
+        return;
+    }
+    file.setFileName(fileName);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error while opening for writing";
+        return;
+    }
+
+    markdown_ico->setDisabled(false);
+    html_ico->setDisabled(false);
+    text_ico->setDisabled(false);
     WorkToolBar->setDisabled(false);
+
+    markdown_ico->setChecked(true);
+    MarkdowntextEdit->show();
 }

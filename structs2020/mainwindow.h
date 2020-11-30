@@ -21,14 +21,17 @@ public:
 private:
     Ui::MainWindow *ui;
 
+//Toolbar functions
 private:
     QToolBar* createMainToolBar();
     QToolBar* createExtraToolBar();
     QToolBar* createWorkToolBar();
 
+//Toolbar variable to set it enabled or disables when needed
 private:
     QToolBar *WorkToolBar;
 
+//Toolbar buttons
 private slots:
     void MarkdowneditCheck();
     void PreviewCheck();
@@ -36,9 +39,12 @@ private slots:
     void CreateNewFile();
     void OpenFile();
 
+//Help functions
+private:
+    void checkForChanges();
 
 
-
+//Other variables
 private:
     QPlainTextEdit *MarkdowntextEdit;
     QTextBrowser* TextPreview;
@@ -47,5 +53,7 @@ private:
     QAction* html_ico;
     QAction* text_ico;
     QAction* markdown_ico;
+    //Файл, с которым происходит работа
+    QFile file;
 };
 #endif // MAINWINDOW_H
