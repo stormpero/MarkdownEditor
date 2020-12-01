@@ -14,7 +14,7 @@ QToolBar* MainWindow::createWorkToolBar()
 {
     QToolBar* bar = new QToolBar("Work ToolBar");
     bar->addAction(QPixmap(":/img/Toolbar/save.ico"), "Сохранить", this, SLOT(SaveFile()));
-    bar->addAction(QPixmap(":/img/Toolbar/saveas.ico"), "Сохранить как");
+    bar->addAction(QPixmap(":/img/Toolbar/saveas.ico"), "Сохранить как", this, SLOT(SaveFileAs()));
     bar->addSeparator();
     bar->addAction(QPixmap(":/img/Toolbar/image.ico"), "Вставить изображение");
     bar->addAction(QPixmap(":/img/Toolbar/link.ico"), "Вставить ссылку");
