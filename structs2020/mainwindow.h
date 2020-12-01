@@ -38,6 +38,7 @@ private slots:
     void HtmlCheck();
     void CreateNewFile();
     void OpenFile();
+    void SaveFile();
 
 //Help functions
 private:
