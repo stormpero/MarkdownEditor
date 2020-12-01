@@ -48,9 +48,9 @@ private:
 
 //Other variables
 private:
-    QPlainTextEdit *MarkdowntextEdit;
-    QTextBrowser* TextPreview;
-    QTextBrowser* htmlPreview;
+    QTextEdit *MarkdowntextEdit;
+    QTextEdit* TextPreview;
+    QTextEdit* htmlPreview;
 
     //Иконки
     QAction* html_ico;
