@@ -74,19 +74,19 @@ void MainWindow::HtmlCheck()
     }
 }
 
-void MainWindow::OpenFile()
+void MainWindow::CreateNewFile()
 {
     checkForChanges();
-    QString fileName = QFileDialog::getOpenFileName(0, "Открыть файл", "", "*.markdown");
+    QString fileName = QFileDialog::getSaveFileName(0, "Создать файл", "*.markdown");
     if(fileName.isEmpty())
     {
-        qDebug() << "Read and write paths are empty";
+        qDebug() << "Write path is empty";
         return;
     }
     file.setFileName(fileName);
-    if (!file.open(QIODevice::ReadWrite))
+    if (!file.open(QIODevice::WriteOnly))
     {
-        qDebug() << "Error while opening for writing and reading";
+        qDebug() << "Error while opening for writing";
         return;
     }
     while (!file.atEnd())
@@ -104,22 +104,25 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
 }
 
-void MainWindow::CreateNewFile()
+void MainWindow::OpenFile()
 {
     checkForChanges();
-    QString fileName = QFileDialog::getSaveFileName(0, "Создать файл", "*.markdown");
+    QString fileName = QFileDialog::getOpenFileName(0, "Открыть файл", "", "*.markdown");
     if(fileName.isEmpty())
     {
-        qDebug() << "Write path is empty";
+        qDebug() << "Read and write paths are empty";
         return;
     }
     file.setFileName(fileName);
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::ReadWrite))
     {
-        qDebug() << "Error while opening for writing";
+        qDebug() << "Error while opening for writing and reading";
         return;
     }
 
+    MarkdowntextEdit->setPlainText(file.readAll());
+
+    file.close();
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);
@@ -134,4 +137,10 @@ void MainWindow::SaveFile()
     if(!isChanged)
         return;
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
+}
+
+int MainWindow::SaveFileAs()
+{
+
+return 1;
 }

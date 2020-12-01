@@ -11,5 +11,6 @@
         <file>img/Toolbar/extra_html.ico</file>
         <file>img/Toolbar/extra_txt.ico</file>
         <file>img/Toolbar/extra_markdown.ico</file>
+        <file>img/window_ico.ico</file>
     </qresource>
 </RCC>
