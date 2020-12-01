@@ -92,7 +92,7 @@ void MainWindow::CreateNewFile()
     while (!file.atEnd())
     {
          QByteArray line = file.readLine();
-         MarkdowntextEdit->appendPlainText(line);
+         MarkdowntextEdit->append(line);
     }
 
     markdown_ico->setDisabled(false);
