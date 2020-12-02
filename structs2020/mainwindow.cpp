@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]()
     {
         isChanged = true;
-      setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
+        setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
     });
 
