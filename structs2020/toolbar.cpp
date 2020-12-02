@@ -22,7 +22,7 @@ QToolBar* MainWindow::createWorkToolBar()
     bar->addAction(QPixmap(":/img/Toolbar/tohtml.ico"), "Экспорт в html");
     bar->addAction(QPixmap(":/img/Toolbar/topdf.ico"), "Экспорт в pdf");
     bar->setMovable(false);
-    bar->setIconSize(QSize(35,35));
+    bar->setIconSize(QSize(25,25));
     return bar;
 }
 QToolBar* MainWindow::createExtraToolBar()
@@ -42,7 +42,7 @@ QToolBar* MainWindow::createExtraToolBar()
 
     bar->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
     bar->setMovable(false);
-    bar->setIconSize(QSize(35,35));
+    bar->setIconSize(QSize(25,25));
 
     return bar;
 }
@@ -81,6 +81,7 @@ void MainWindow::CreateNewFile()
     if (checkForChanges() == -1)
         return;
 
+
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);
@@ -114,7 +115,6 @@ void MainWindow::OpenFile()
 
     MarkdowntextEdit->setPlainText(file.readAll());
 
-    file.close();
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);
@@ -131,14 +131,17 @@ void MainWindow::SaveFile()
 {
     if(!isChanged)
         return;
+
     if (!file.open(QIODevice::WriteOnly))
     {
-        qDebug() << "1";
         SaveFileAs();
         return;
     }
+  
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
+  
     file.close();
+
 }
 
 int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel

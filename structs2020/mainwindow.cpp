@@ -10,11 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     //set title & ico
     setWindowTitle("Markdown Editor");
     setWindowIcon(QIcon(":/img/window_ico.ico"));
-
     //Create Texteditors & Textviews
-    MarkdowntextEdit = new QTextEdit;
-    TextPreview = new QTextEdit;
-    htmlPreview = new QTextEdit;
 
     QLabel * label = new QLabel();
     statusBar()->addWidget(label);
@@ -23,9 +19,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     TextPreview->setReadOnly(true);
     htmlPreview->setReadOnly(true);
+
+    MarkdowntextEdit = new QPlainTextEdit;
+    TextPreview = new QTextBrowser;
+    htmlPreview = new QTextBrowser;
+
     ui->boxl->addWidget(MarkdowntextEdit);
     ui->boxl->addWidget(TextPreview);
-    ui->boxl->addWidget(htmlPreview);
+    ui->boxl->addWidget(htmlPreview);    
     MarkdowntextEdit->hide();
     TextPreview->hide();
     htmlPreview->hide();
@@ -36,15 +37,17 @@ MainWindow::MainWindow(QWidget *parent)
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
-    connect(MarkdowntextEdit, &QTextEdit::textChanged, [this]() {   isChanged = true;
-                                                                    setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
-                                                                    TextPreview->setMarkdown(MarkdowntextEdit->document()->toRawText());
-                                                                 });
-//    connect(MarkdowntextEdit, &QTextEdit::cursorPositionChanged, [this] ()
-//    {
-//        QTextCursor a;
-//        label->setText( a.position());
-//    })
+
+    TextPreview->setAcceptRichText(false);
+
+    connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]()
+    {
+        isChanged = true;
+        setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
+        TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
+    });
+
+
 }
 
 MainWindow::~MainWindow()
