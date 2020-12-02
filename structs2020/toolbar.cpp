@@ -81,7 +81,6 @@ void MainWindow::CreateNewFile()
     if (checkForChanges() == -1)
         return;
 
-
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);
@@ -114,6 +113,7 @@ void MainWindow::OpenFile()
     }
 
     MarkdowntextEdit->setPlainText(file.readAll());
+    setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
 
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
@@ -161,15 +161,6 @@ int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
     file.close();
     return 1;
-}
-
-int MainWindow::DialogSaveWindow()
-{
-    int ret = QMessageBox::warning(this, tr("Markdown Editor"),
-                                   tr("Документ был изменён\n"
-                                      "Вы хотите сохранить свои изменения?"),
-                                   QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Save);
-    return ret;
 }
 
 

@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    MarkdowntextEdit = new QPlainTextEdit;
+    MarkdowntextEdit = new CodeEditor;
     TextPreview = new QTextBrowser;
     htmlPreview = new QTextBrowser;
 
@@ -39,11 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
     WorkToolBar->setDisabled(true);
 
     TextPreview->setAcceptRichText(false);
-
     connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]()
     {
         isChanged = true;
-        setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
     });
 

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QtWidgets>
+#include "codeeditor.h"
 //------------------//
 
 QT_BEGIN_NAMESPACE
@@ -49,7 +50,7 @@ private:
 
 //Other variables
 private:
-    QPlainTextEdit *MarkdowntextEdit;
+    CodeEditor *MarkdowntextEdit;
     QTextBrowser* TextPreview;
     QTextBrowser* htmlPreview;
 
