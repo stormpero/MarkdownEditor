@@ -20,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void initializationCSS();
 
 //Toolbar functions
 private:

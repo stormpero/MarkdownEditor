@@ -98,7 +98,8 @@ void MainWindow::CreateNewFile()
 
 void MainWindow::OpenFile()
 {
-    checkForChanges();
+    if (checkForChanges() == -1)
+        return;
     QString fileName = QFileDialog::getOpenFileName(0, "Открыть файл", "", "*.markdown");
     if(fileName.isEmpty())
     {
@@ -123,6 +124,7 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
     isChanged = false;
     setWindowTitle(QString(fileName + " - Markdown Editor"));
+    statusBar()->showMessage(QString::number(file.size()));
 }
 
 void MainWindow::SaveFile()
