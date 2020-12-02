@@ -1,12 +1,16 @@
 #include "mainwindow.h"
 
-void MainWindow::checkForChanges()
+int MainWindow::checkForChanges()
 {
-    if(file.isOpen())
+    if(isChanged)
     {
-        if(isChanged)
-        {
+        int k = DialogSaveWindow();
 
-        }
+        if (k == QMessageBox::Save)
+            SaveFile();
+
+        else if (k == QMessageBox::Cancel)
+            return -1;
     }
+    return 0;
 }

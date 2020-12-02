@@ -64,7 +64,6 @@ void MainWindow::PreviewCheck()
         TextPreview->show();
     }
 }
-
 void MainWindow::HtmlCheck()
 {
     htmlPreview->hide();
@@ -76,24 +75,11 @@ void MainWindow::HtmlCheck()
 
 void MainWindow::CreateNewFile()
 {
-    checkForChanges();
-    QString fileName = QFileDialog::getSaveFileName(0, "Создать файл", "*.markdown");
-    if(fileName.isEmpty())
-    {
-        qDebug() << "Write path is empty";
+    if (isExistButNoWay)
         return;
-    }
-    file.setFileName(fileName);
-    if (!file.open(QIODevice::WriteOnly))
-    {
-        qDebug() << "Error while opening for writing";
+
+    if (checkForChanges() == -1)
         return;
-    }
-    while (!file.atEnd())
-    {
-         QByteArray line = file.readLine();
-         MarkdowntextEdit->append(line);
-    }
 
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
@@ -101,7 +87,12 @@ void MainWindow::CreateNewFile()
     WorkToolBar->setDisabled(false);
 
     markdown_ico->setChecked(true);
+    MarkdowntextEdit->clear();
     MarkdowntextEdit->show();
+    setWindowTitle(QString("new - Markdown Editor"));
+    isChanged = false;
+    isExistButNoWay = true;
+
 }
 
 void MainWindow::OpenFile()
@@ -130,17 +121,54 @@ void MainWindow::OpenFile()
 
     markdown_ico->setChecked(true);
     MarkdowntextEdit->show();
+    isChanged = false;
+    setWindowTitle(QString(fileName + " - Markdown Editor"));
 }
 
 void MainWindow::SaveFile()
 {
     if(!isChanged)
         return;
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "1";
+        SaveFileAs();
+        return;
+    }
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
+    file.close();
 }
 
-int MainWindow::SaveFileAs()
+int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel
 {
-
-return 1;
+    QString fileName = QFileDialog::getSaveFileName(0, "Сохранить файл как","", "*.markdown");
+    if(fileName.isEmpty())
+    {
+        qDebug() << "Write path is empty";
+        return -1;
+    }
+    file.setFileName(fileName);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error while opening for writing";
+        return -1;
+    }
+    file.write(MarkdowntextEdit->toPlainText().toStdString().data());
+    file.close();
+    return 1;
 }
+
+int MainWindow::DialogSaveWindow()
+{
+    int ret = QMessageBox::warning(this, tr("Markdown Editor"),
+                                   tr("Документ был изменён\n"
+                                      "Вы хотите сохранить свои изменения?"),
+                                   QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Save);
+    return ret;
+}
+
+
+
+
+
+

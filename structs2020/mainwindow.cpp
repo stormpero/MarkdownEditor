@@ -31,7 +31,10 @@ MainWindow::MainWindow(QWidget *parent)
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
-    connect(MarkdowntextEdit, &QTextEdit::textChanged, [this]() { isChanged = true; TextPreview->setMarkdown(MarkdowntextEdit->document()->toRawText());});
+    connect(MarkdowntextEdit, &QTextEdit::textChanged, [this]() {   isChanged = true;
+                                                                    setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
+                                                                    TextPreview->setMarkdown(MarkdowntextEdit->document()->toRawText());
+                                                                 });
 }
 
 MainWindow::~MainWindow()
