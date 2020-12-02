@@ -10,19 +10,17 @@ MainWindow::MainWindow(QWidget *parent)
     //set title & ico
     setWindowTitle("Markdown Editor");
     setWindowIcon(QIcon(":/img/window_ico.ico"));
+
     //Create Texteditors & Textviews
 
-    QLabel * label = new QLabel();
-    statusBar()->addWidget(label);
 
-    initializationCSS();
-
-    TextPreview->setReadOnly(true);
-    htmlPreview->setReadOnly(true);
 
     MarkdowntextEdit = new QPlainTextEdit;
     TextPreview = new QTextBrowser;
     htmlPreview = new QTextBrowser;
+
+    TextPreview->setReadOnly(true);
+    htmlPreview->setReadOnly(true);
 
     ui->boxl->addWidget(MarkdowntextEdit);
     ui->boxl->addWidget(TextPreview);
@@ -30,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     MarkdowntextEdit->hide();
     TextPreview->hide();
     htmlPreview->hide();
+
+    initializationCSS();
 
     //Create Toolbar
     addToolBar(Qt::TopToolBarArea,createMainToolBar());
