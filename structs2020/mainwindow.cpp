@@ -12,9 +12,12 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/img/window_ico.ico"));
 
     //Create Texteditors & Textviews
-    MarkdowntextEdit = new QPlainTextEdit;
-    TextPreview = new QTextBrowser;
-    htmlPreview = new QTextBrowser;
+    MarkdowntextEdit = new QTextEdit;
+    TextPreview = new QTextEdit;
+    htmlPreview = new QTextEdit;
+
+    TextPreview->setReadOnly(true);
+    htmlPreview->setReadOnly(true);
     ui->boxl->addWidget(MarkdowntextEdit);
     ui->boxl->addWidget(TextPreview);
     ui->boxl->addWidget(htmlPreview);
@@ -28,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
-    connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]() { isChanged = true; TextPreview->setMarkdown(MarkdowntextEdit->toPlainText()); });
+    connect(MarkdowntextEdit, &QTextEdit::textChanged, [this]() { isChanged = true; TextPreview->setMarkdown(MarkdowntextEdit->document()->toRawText());});
 }
 
 MainWindow::~MainWindow()

@@ -13,8 +13,8 @@ QToolBar* MainWindow::createMainToolBar()
 QToolBar* MainWindow::createWorkToolBar()
 {
     QToolBar* bar = new QToolBar("Work ToolBar");
-    bar->addAction(QPixmap(":/img/Toolbar/save.ico"), "Сохранить");
-    bar->addAction(QPixmap(":/img/Toolbar/saveas.ico"), "Сохранить как");
+    bar->addAction(QPixmap(":/img/Toolbar/save.ico"), "Сохранить", this, SLOT(SaveFile()));
+    bar->addAction(QPixmap(":/img/Toolbar/saveas.ico"), "Сохранить как", this, SLOT(SaveFileAs()));
     bar->addSeparator();
     bar->addAction(QPixmap(":/img/Toolbar/image.ico"), "Вставить изображение");
     bar->addAction(QPixmap(":/img/Toolbar/link.ico"), "Вставить ссылку");
@@ -89,6 +89,11 @@ void MainWindow::CreateNewFile()
         qDebug() << "Error while opening for writing";
         return;
     }
+    while (!file.atEnd())
+    {
+         QByteArray line = file.readLine();
+         MarkdowntextEdit->append(line);
+    }
 
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
@@ -127,7 +132,15 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
 }
 
+void MainWindow::SaveFile()
+{
+    if(!isChanged)
+        return;
+    file.write(MarkdowntextEdit->toPlainText().toStdString().data());
+}
+
 int MainWindow::SaveFileAs()
 {
 
+return 1;
 }
