@@ -2,5 +2,5 @@
 
 MarkDownToHtml::MarkDownToHtml()
 {
-    rx = QRegExp("^[1-9][0-9е]$");
+    rx = QRegExp("^[1-е]$");
 }
