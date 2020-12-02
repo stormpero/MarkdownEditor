@@ -43,8 +43,8 @@ private slots:
 
 //Help functions
 private:
-    void checkForChanges();
-
+    int checkForChanges();
+    int DialogSaveWindow();
 
 //Other variables
 private:
@@ -59,7 +59,7 @@ private:
 
     //Файл, с которым происходит работа
     QFile file;
-
+    bool isExistButNoWay = false;
     bool isChanged = false;
 };
 #endif // MAINWINDOW_H
