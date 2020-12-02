@@ -16,6 +16,11 @@ MainWindow::MainWindow(QWidget *parent)
     TextPreview = new QTextEdit;
     htmlPreview = new QTextEdit;
 
+    QLabel * label = new QLabel();
+    statusBar()->addWidget(label);
+
+    initializationCSS();
+
     TextPreview->setReadOnly(true);
     htmlPreview->setReadOnly(true);
     ui->boxl->addWidget(MarkdowntextEdit);
@@ -35,6 +40,11 @@ MainWindow::MainWindow(QWidget *parent)
                                                                     setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
                                                                     TextPreview->setMarkdown(MarkdowntextEdit->document()->toRawText());
                                                                  });
+//    connect(MarkdowntextEdit, &QTextEdit::cursorPositionChanged, [this] ()
+//    {
+//        QTextCursor a;
+//        label->setText( a.position());
+//    })
 }
 
 MainWindow::~MainWindow()
