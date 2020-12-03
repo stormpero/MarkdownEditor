@@ -1,5 +1,4 @@
 #include "codeeditor.h"
-
 #include <QPainter>
 #include <QTextBlock>
 
@@ -24,7 +23,7 @@ int CodeEditor::lineNumberAreaWidth()
         ++digits;
     }
 
-    int space = 3 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
+    int space = 10 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits;
 
     return space;
 }
@@ -77,7 +76,7 @@ void CodeEditor::highlightCurrentLine()
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
     QPainter painter(lineNumberArea);
-    painter.fillRect(event->rect(), Qt::lightGray);
+    painter.fillRect(event->rect(), QColor(215, 215, 215));
 
 
     QTextBlock block = firstVisibleBlock();
@@ -99,6 +98,7 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
         ++blockNumber;
     }
 }
+<<<<<<< HEAD
 //![extraAreaPaintEvent_2]
 //!
 //!
@@ -106,5 +106,7 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 
 
 
+=======
+>>>>>>> 193e2ac (experimental changes)
 
 

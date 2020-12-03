@@ -45,8 +45,8 @@ MainWindow::MainWindow(QWidget *parent)
         setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
     });
-
-
+    MarkdowntextEdit->addAction(this, SLOT(zoomIn()),
+                                QKeySequence(tr("Ctrl+O", "File|Open")));
 }
 
 MainWindow::~MainWindow()

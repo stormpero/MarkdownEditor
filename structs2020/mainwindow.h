@@ -29,7 +29,7 @@ private:
     QToolBar* createExtraToolBar();
     QToolBar* createWorkToolBar();
 
-//Toolbar variable to set it enabled or disables when needed
+//Toolbar variable to set it enabled or disabled when needed
 private:
     QToolBar *WorkToolBar;
 

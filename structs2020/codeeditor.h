@@ -27,6 +27,8 @@ private slots:
 
 private:
     QWidget *lineNumberArea;
+private:
+    //void keyPressEvent(QKeyEvent *event) override;
 };
 
 
