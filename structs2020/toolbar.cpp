@@ -6,7 +6,7 @@ QToolBar* MainWindow::createMainToolBar()
     bar->addAction(QPixmap(":/img/Toolbar/newfile.ico"), "Создать файл", this, SLOT(CreateNewFile()));
     bar->addAction(QPixmap(":/img/Toolbar/openfile.ico"), "Открыть файл", this, SLOT(OpenFile()));
     bar->setMovable(false);
-    bar->setIconSize(QSize(35,35));
+    bar->setIconSize(QSize(25,25));
 
     return bar;
 }
@@ -123,6 +123,7 @@ void MainWindow::OpenFile()
     markdown_ico->setChecked(true);
     MarkdowntextEdit->show();
     isChanged = false;
+    isExistButNoWay = false;
     setWindowTitle(QString(fileName + " - Markdown Editor"));
     statusBar()->showMessage(QString::number(file.size()));
 }
@@ -132,16 +133,18 @@ void MainWindow::SaveFile()
     if(!isChanged)
         return;
 
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.exists())
     {
         SaveFileAs();
         return;
     }
-  
-    file.write(MarkdowntextEdit->toPlainText().toStdString().data());
-  
-    file.close();
+    if (!file.isOpen())
+        file.open(QIODevice::WriteOnly);
 
+    file.write(MarkdowntextEdit->toPlainText().toStdString().data());
+    setWindowTitle(QString(windowTitle().remove(0,1)));
+    file.close();
+    isChanged = false;
 }
 
 int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel

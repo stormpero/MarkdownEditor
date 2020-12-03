@@ -47,7 +47,7 @@ private slots:
 private:
     int checkForChanges();
     int DialogSaveWindow();
-
+    void WheelExpansion(QObject *object, QEvent *event);
 //Other variables
 private:
     CodeEditor *MarkdowntextEdit;

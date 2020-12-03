@@ -24,3 +24,20 @@ int MainWindow::checkForChanges()
     }
     return 0;
 }
+
+void MainWindow::WheelExpansion(QObject *object, QEvent *event)
+{
+    if(object == MarkdowntextEdit  && event->type() == QEvent::Wheel )
+    {
+        QWheelEvent *wheel = static_cast<QWheelEvent*>(event);
+        if( wheel->modifiers() == Qt::ControlModifier )
+            if(wheel->delta() > 0)
+            {
+                MarkdowntextEdit->zoomIn(2);
+            }
+            else
+            {
+                MarkdowntextEdit->zoomOut(2);
+            }
+    }
+}

@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     MarkdowntextEdit->hide();
     TextPreview->hide();
     htmlPreview->hide();
-
+    MarkdowntextEdit->installEventFilter(this);
     initializationCSS();
 
     //Create Toolbar
@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]()
     {
         isChanged = true;
+        setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
     });
 
