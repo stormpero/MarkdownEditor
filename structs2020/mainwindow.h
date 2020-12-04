@@ -19,9 +19,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+//show window and design functions
 private:
     Ui::MainWindow *ui;
     void initializationCSS();
+    void IntitialiseApp();
+    void CreateToolBars();
 
 //Toolbar functions
 private:
@@ -43,10 +46,12 @@ private slots:
     void SaveFile();
     int SaveFileAs();
 
-//Help functions
+signals:
+    void ifChanged();
+
+//popup Windows
 private:
-    int checkForChanges();
-    int DialogSaveWindow();
+    int SaveDialog();
     void WheelExpansion(QObject *object, QEvent *event);
 //Other variables
 private:

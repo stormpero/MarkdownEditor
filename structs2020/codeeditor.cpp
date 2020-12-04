@@ -98,15 +98,6 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
         ++blockNumber;
     }
 }
-<<<<<<< HEAD
-//![extraAreaPaintEvent_2]
-//!
-//!
 
-
-
-
-=======
->>>>>>> 193e2ac (experimental changes)
 
 

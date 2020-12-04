@@ -78,8 +78,10 @@ void MainWindow::CreateNewFile()
     if (isExistButNoWay)
         return;
 
-    if (checkForChanges() == -1)
+    if (SaveDialog() == -1)
         return;
+
+    setWindowTitle(QString("*%1 - Markdown Editor").arg("new"));
 
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
@@ -97,7 +99,7 @@ void MainWindow::CreateNewFile()
 
 void MainWindow::OpenFile()
 {
-    if (checkForChanges() == -1)
+    if (SaveDialog() == -1)
         return;
     QString fileName = QFileDialog::getOpenFileName(0, "Открыть файл", "", "*.markdown");
     if(fileName.isEmpty())
@@ -113,7 +115,8 @@ void MainWindow::OpenFile()
     }
 
     MarkdowntextEdit->setPlainText(file.readAll());
-    setWindowTitle(QString("*" + file.fileName() + " - Markdown Editor"));
+
+    setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName()));
 
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
@@ -124,7 +127,6 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
     isChanged = false;
     isExistButNoWay = false;
-    setWindowTitle(QString(fileName + " - Markdown Editor"));
     statusBar()->showMessage(QString::number(file.size()));
 }
 

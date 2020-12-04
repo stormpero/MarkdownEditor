@@ -18,10 +18,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     codeeditor.cpp \
     css_styles.cpp \
-    helpers.cpp \
     main.cpp \
     mainwindow.cpp \
     markdowntohtml.cpp \
+    popup.cpp \
     toolbar.cpp
 
 HEADERS += \

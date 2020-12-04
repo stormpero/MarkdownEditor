@@ -13,41 +13,59 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Create Texteditors & Textviews
 
+    IntitialiseApp();
+    initializationCSS();
 
+    //Create Toolbars
+    CreateToolBars();
 
+    //Make connections to events
+    InitialiseConnections();
+}
+
+void MainWindow::IntitialiseApp()
+{
     MarkdowntextEdit = new CodeEditor;
     TextPreview = new QTextBrowser;
     htmlPreview = new QTextBrowser;
-
     TextPreview->setReadOnly(true);
     htmlPreview->setReadOnly(true);
 
     ui->boxl->addWidget(MarkdowntextEdit);
     ui->boxl->addWidget(TextPreview);
-    ui->boxl->addWidget(htmlPreview);    
+    ui->boxl->addWidget(htmlPreview);
     MarkdowntextEdit->hide();
     TextPreview->hide();
     htmlPreview->hide();
     MarkdowntextEdit->installEventFilter(this);
-    initializationCSS();
+}
 
-    //Create Toolbar
+void MainWindow::CreateToolBars()
+{
     addToolBar(Qt::TopToolBarArea,createMainToolBar());
     WorkToolBar = createWorkToolBar();
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
+}
 
-    TextPreview->setAcceptRichText(false);
+void MainWindow::InitialiseConnections()
+{
     connect(MarkdowntextEdit, &QPlainTextEdit::textChanged, [this]()
     {
-        isChanged = true;
-        setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
+        if(!isChanged)
+        {
+            isChanged = true;
+            emit MainWindow::ifChanged();
+        }
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
     });
-    MarkdowntextEdit->addAction(this, SLOT(zoomIn()),
-                                QKeySequence(tr("Ctrl+O", "File|Open")));
+    connect(this, &MainWindow::ifChanged, [this]()
+    {
+        setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
+    });
 }
+
 
 MainWindow::~MainWindow()
 {
