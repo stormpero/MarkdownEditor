@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "markdowntohtml.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -60,6 +61,8 @@ void MainWindow::InitialiseConnections()
             emit MainWindow::ifChanged();
         }
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
+        //htmlPreview->setHtml(TextPreview->document()->toHtml());
+        htmlPreview->setPlainText(MarkDownToHtml(TextPreview->document()->toRawText()).getResult());
     });
     connect(this, &MainWindow::ifChanged, [this]()
     {

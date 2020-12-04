@@ -6,9 +6,12 @@
 class MarkDownToHtml
 {
 private:
-    QRegExp rx;
-public:  
-    MarkDownToHtml();
+    QString result;
+public:
+    MarkDownToHtml(QString input);
+    QString getResult();
+private:
+    void checkForHeadings();
 };
 
 #endif // MARKDOWNTOHTML_H
