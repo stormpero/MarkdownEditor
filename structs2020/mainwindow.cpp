@@ -12,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/img/window_ico.ico"));
 
     //Create Texteditors & Textviews
-
     IntitialiseApp();
     initializationCSS();
 

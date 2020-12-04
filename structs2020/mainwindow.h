@@ -25,6 +25,7 @@ private:
     void initializationCSS();
     void IntitialiseApp();
     void CreateToolBars();
+    void InitialiseConnections();
 
 //Toolbar functions
 private:
