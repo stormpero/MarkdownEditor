@@ -46,6 +46,8 @@ void MainWindow::CreateToolBars()
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
+    disableMenu(true);
+
 }
 
 void MainWindow::InitialiseConnections()
@@ -63,6 +65,15 @@ void MainWindow::InitialiseConnections()
     {
         setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
     });
+
+    //MenuBar
+    connect(ui->action_newFile, SIGNAL(triggered()), this, SLOT(CreateNewFile()));
+    connect(ui->action_openFile, SIGNAL(triggered()), this, SLOT(OpenFile()));
+    connect(ui->action_save, SIGNAL(triggered()), this, SLOT(SaveFile()));
+    connect(ui->action_saveAs, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
+    //connect(ui->action_link, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
+    //connect(ui->action_img, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
+
 }
 
 

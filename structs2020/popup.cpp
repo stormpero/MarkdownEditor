@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 int MainWindow::SaveDialog()
 {
@@ -18,12 +19,24 @@ int MainWindow::SaveDialog()
     return 0;
 }
 
+void MainWindow::disableMenu(bool a)
+{
+    ui->action_save->setDisabled(a);
+    ui->action_saveAs->setDisabled(a);
+    ui->action_toHTML->setDisabled(a);
+    ui->action_toPDF->setDisabled(a);
+    ui->action_img->setDisabled(a);
+    ui->action_link->setDisabled(a);
+}
+
 void MainWindow::WheelExpansion(QObject *object, QEvent *event)
 {
+
     if(object == MarkdowntextEdit  && event->type() == QEvent::Wheel )
     {
         QWheelEvent *wheel = static_cast<QWheelEvent*>(event);
-        if( wheel->modifiers() == Qt::ControlModifier )
+        if(wheel->modifiers() == Qt::ControlModifier)
+        {
             if(wheel->delta() > 0)
             {
                 MarkdowntextEdit->zoomIn(2);
@@ -32,5 +45,6 @@ void MainWindow::WheelExpansion(QObject *object, QEvent *event)
             {
                 MarkdowntextEdit->zoomOut(2);
             }
+        }
     }
 }

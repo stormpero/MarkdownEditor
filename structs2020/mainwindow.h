@@ -26,6 +26,7 @@ private:
     void IntitialiseApp();
     void CreateToolBars();
     void InitialiseConnections();
+    void disableMenu(bool a);
 
 //Toolbar functions
 private:
@@ -54,6 +55,7 @@ signals:
 private:
     int SaveDialog();
     void WheelExpansion(QObject *object, QEvent *event);
+
 //Other variables
 private:
     CodeEditor *MarkdowntextEdit;
