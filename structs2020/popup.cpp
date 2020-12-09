@@ -48,3 +48,4 @@ void MainWindow::WheelExpansion(QObject *object, QEvent *event)
         }
     }
 }
+

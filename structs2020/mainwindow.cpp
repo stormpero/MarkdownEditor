@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     //set title & ico
     setWindowTitle("Markdown Editor");
     setWindowIcon(QIcon(":/img/window_ico.ico"));
@@ -58,15 +57,11 @@ void MainWindow::InitialiseConnections()
         if(!isChanged)
         {
             isChanged = true;
-            emit MainWindow::ifChanged();
+            setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
         }
         TextPreview->setMarkdown(MarkdowntextEdit->document()->toMarkdown());
         //htmlPreview->setHtml(TextPreview->document()->toHtml());
-        htmlPreview->setPlainText(MarkDownToHtml(TextPreview->document()->toRawText()).getResult());
-    });
-    connect(this, &MainWindow::ifChanged, [this]()
-    {
-        setWindowTitle(QString("*%1 - Markdown Editor").arg(isExistButNoWay ? "new" : file.fileName()));
+        htmlPreview->setText(MarkDownToHtml(TextPreview->document()->toRawText()).getResult());
     });
 
     //MenuBar

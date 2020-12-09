@@ -7,22 +7,8 @@ MarkDownToHtml::MarkDownToHtml(QString input) : result(input)
 
 void MarkDownToHtml::checkForHeadings()
 {
-    QRegExp heading("#+ (.*)\b");
-    QStringList preResult;
-
-    int pos = 0;
-
-     while ((pos = heading.indexIn(result, pos)) != -1) {
-         preResult << heading.cap(1);
-         pos += heading.matchedLength();
-     }
-
-     for(int i = 0; i < preResult.size(); i++)
-     {
-         result = result + "<h" + QString::number(preResult[i].size()) + ">" +
-                 preResult[i] +
-                 "</h" + QString::number(preResult[i].size()) + ">\n";
-     }
+    //QRegExp heading("\\b(#+) +.*\n");
+    //result.replace(QRegExp("\\b(#+) +.*\n"), "<h1>\\1</h1>");
 }
 
 QString MarkDownToHtml::getResult()

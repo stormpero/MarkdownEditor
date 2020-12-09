@@ -52,16 +52,13 @@ private slots:
     void InsertLink();
     void ExportToPDF();
 
-signals:
-    void ifChanged();
-
 //popup Windows
-private:
+public:
     int SaveDialog();
     void WheelExpansion(QObject *object, QEvent *event);
 
 //Other variables
-private:
+public:
     CodeEditor *MarkdowntextEdit;
     QTextBrowser* TextPreview;
     bool isEnableTextPreview = false;
