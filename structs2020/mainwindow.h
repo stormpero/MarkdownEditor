@@ -47,6 +47,8 @@ private slots:
     void OpenFile();
     void SaveFile();
     int SaveFileAs();
+    void InsertImg();
+    void InsertLink();
 
 signals:
     void ifChanged();

@@ -12,16 +12,18 @@ QToolBar* MainWindow::createMainToolBar()
 
     return bar;
 }
+
 QToolBar* MainWindow::createWorkToolBar()
 {
     QToolBar* bar = new QToolBar("Work ToolBar");
+
     bar->addAction(QPixmap(":/img/Toolbar/save.ico"), "Сохранить", this, SLOT(SaveFile()));
     bar->addAction(QPixmap(":/img/Toolbar/saveas.ico"), "Сохранить как", this, SLOT(SaveFileAs()));
 
     bar->addSeparator();
 
-    bar->addAction(QPixmap(":/img/Toolbar/image.ico"), "Вставить изображение");
-    bar->addAction(QPixmap(":/img/Toolbar/link.ico"), "Вставить ссылку");
+    bar->addAction(QPixmap(":/img/Toolbar/image.ico"), "Вставить изображение", this, SLOT(InsertImg()));
+    bar->addAction(QPixmap(":/img/Toolbar/link.ico"), "Вставить ссылку", this, SLOT(InsertLink()));
 
     bar->addSeparator();
 
@@ -32,6 +34,7 @@ QToolBar* MainWindow::createWorkToolBar()
     bar->setIconSize(QSize(25,25));
     return bar;
 }
+
 QToolBar* MainWindow::createExtraToolBar()
 {
     QToolBar* bar = new QToolBar("Extra ToolBar");
@@ -88,8 +91,6 @@ void MainWindow::CreateNewFile()
     if (SaveDialog() == -1)
         return;
 
-    setWindowTitle(QString("*%1 - Markdown Editor").arg("new"));
-
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);    
@@ -101,6 +102,7 @@ void MainWindow::CreateNewFile()
     MarkdowntextEdit->clear();
     MarkdowntextEdit->show();
     setWindowTitle(QString("new - Markdown Editor"));
+
     isChanged = false;
     isExistButNoWay = true;
 
@@ -125,7 +127,7 @@ void MainWindow::OpenFile()
 
     MarkdowntextEdit->setPlainText(file.readAll());
 
-    setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName()));
+    setWindowTitle(QString("%1 - Markdown Editor").arg(file.fileName()));
 
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
@@ -146,7 +148,7 @@ void MainWindow::SaveFile()
     if(!isChanged)
         return;
 
-    if (!file.exists())
+    if (isExistButNoWay)
     {
         SaveFileAs();
         return;
@@ -157,7 +159,9 @@ void MainWindow::SaveFile()
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
     setWindowTitle(QString(windowTitle().remove(0,1)));
     file.close();
+
     isChanged = false;
+    isExistButNoWay = false;
 }
 
 int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel
@@ -176,11 +180,39 @@ int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel
     }
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
     file.close();
+
+    isChanged = false;
+    isExistButNoWay = false;
+
     return 1;
 }
 
+void MainWindow::InsertImg()
+{
+    QString filePath = QFileDialog::getOpenFileName(0, "Выберите картинку", QDir::homePath(), "Images (*.png *.xpm *.jpg)");
+    if(filePath.isEmpty())
+    {
+        qDebug() << "Read and write paths are empty";
+        return;
+    }
+    QFileInfo img(filePath);
+    QString fileName = img.fileName();
+    QTextCursor cursor = MarkdowntextEdit->textCursor();
+    MarkdowntextEdit->insertPlainText(QString("![%2](%1)").arg(filePath).arg(fileName.left(fileName.indexOf("."))));
+}
 
-
-
+void MainWindow::InsertLink()
+{
+    bool ok;
+    QString text = QInputDialog::getText( 0,
+                                          "Ввод",
+                                          "Введите ссылку:",
+                                          QLineEdit::Normal,
+                                          "",
+                                          &ok
+                                         );
+    if (ok && !text.isEmpty())
+         MarkdowntextEdit->insertPlainText(QString("[Название](%1)").arg(text));
+}
 
 

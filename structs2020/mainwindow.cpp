@@ -63,7 +63,7 @@ void MainWindow::InitialiseConnections()
     });
     connect(this, &MainWindow::ifChanged, [this]()
     {
-        setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
+        setWindowTitle(QString("*%1 - Markdown Editor").arg(isExistButNoWay ? "new" : file.fileName()));
     });
 
     //MenuBar
@@ -71,8 +71,8 @@ void MainWindow::InitialiseConnections()
     connect(ui->action_openFile, SIGNAL(triggered()), this, SLOT(OpenFile()));
     connect(ui->action_save, SIGNAL(triggered()), this, SLOT(SaveFile()));
     connect(ui->action_saveAs, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
-    //connect(ui->action_link, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
-    //connect(ui->action_img, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
+    connect(ui->action_link, SIGNAL(triggered()), this, SLOT(InsertLink()));
+    connect(ui->action_img, SIGNAL(triggered()), this, SLOT(InsertImg()));
 
 }
 
