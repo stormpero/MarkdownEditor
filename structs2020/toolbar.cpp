@@ -28,7 +28,7 @@ QToolBar* MainWindow::createWorkToolBar()
     bar->addSeparator();
 
     bar->addAction(QPixmap(":/img/Toolbar/tohtml.ico"), "Экспорт в html");
-    bar->addAction(QPixmap(":/img/Toolbar/topdf.ico"), "Экспорт в pdf");
+    bar->addAction(QPixmap(":/img/Toolbar/topdf.ico"), "Экспорт в pdf", this, SLOT(ExportToPDF()));
 
     bar->setMovable(false);
     bar->setIconSize(QSize(25,25));
@@ -69,9 +69,11 @@ void MainWindow::MarkdowneditCheck()
 void MainWindow::PreviewCheck()
 {
     TextPreview->hide();
+    isEnableTextPreview = false;
     if (text_ico->isChecked())
     {
         TextPreview->show();
+        isEnableTextPreview = true;
     }
 }
 void MainWindow::HtmlCheck()
@@ -204,15 +206,30 @@ void MainWindow::InsertImg()
 void MainWindow::InsertLink()
 {
     bool ok;
-    QString text = QInputDialog::getText( 0,
-                                          "Ввод",
+    QString text = QInputDialog::getText( this,
+                                          "Markdown Editor",
                                           "Введите ссылку:",
                                           QLineEdit::Normal,
                                           "",
-                                          &ok
+                                          &ok,
+                                          Qt::Window
                                          );
     if (ok && !text.isEmpty())
          MarkdowntextEdit->insertPlainText(QString("[Название](%1)").arg(text));
 }
 
+void MainWindow::ExportToPDF()
+{
+     QString filePath = QFileDialog::getSaveFileName(0, "Экспорт в PDF","", "*.pdf");
+     if(filePath.isEmpty())
+     {
+         qDebug() << "Read and write paths are empty";
+         return;
+     }
+     QPrinter printer;
+     printer.setOutputFormat(QPrinter::PdfFormat);
+     printer.setOutputFileName(filePath); // устанавливаем путь к pdf файлу
+
+     TextPreview->print(&printer);
+}
 

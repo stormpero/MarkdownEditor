@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QtWidgets>
+#include <QPrinter>
 #include "codeeditor.h"
 //------------------//
 
@@ -49,6 +50,7 @@ private slots:
     int SaveFileAs();
     void InsertImg();
     void InsertLink();
+    void ExportToPDF();
 
 signals:
     void ifChanged();
@@ -62,6 +64,7 @@ private:
 private:
     CodeEditor *MarkdowntextEdit;
     QTextBrowser* TextPreview;
+    bool isEnableTextPreview = false;
     QTextBrowser* htmlPreview;
 
     //Иконки

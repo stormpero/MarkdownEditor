@@ -49,14 +49,8 @@
     <addaction name="action_link"/>
     <addaction name="action_img"/>
    </widget>
-   <widget class="QMenu" name="menu_style">
-    <property name="title">
-     <string>Стиль</string>
-    </property>
-   </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_add"/>
-   <addaction name="menu_style"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_newFile">
