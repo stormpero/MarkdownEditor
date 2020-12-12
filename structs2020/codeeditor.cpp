@@ -78,6 +78,9 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
     QPainter painter(lineNumberArea);
     painter.fillRect(event->rect(), QColor(215, 215, 215));
 
+    textFont = painter.font();
+    textFont.setPointSize(10);
+    painter.setFont(textFont);
 
     QTextBlock block = firstVisibleBlock();
     int blockNumber = block.blockNumber();
@@ -97,7 +100,23 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
         bottom = top + qRound(blockBoundingRect(block).height());
         ++blockNumber;
     }
+
 }
 
+void CodeEditor::wheelEvent(QWheelEvent *event)
+{
+    if(event->modifiers() == Qt::ControlModifier)
+    {
+        if(event->delta() > 0)
+        {
+            this->zoomIn(2);
+        }
+        else
+        {
+            this->zoomOut(2);
+        }
+    }
+    QPlainTextEdit::wheelEvent(event);
+}
 
 

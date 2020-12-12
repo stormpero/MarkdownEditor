@@ -2,7 +2,7 @@
 #define CODEEDITOR_H
 
 #include <QPlainTextEdit>
-
+#include <QEvent>
 class LineNumberArea;
 
 //![codeeditordefinition]
@@ -16,7 +16,7 @@ public:
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();
-
+    void wheelEvent(QWheelEvent *event);
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
@@ -27,6 +27,7 @@ private slots:
 
 private:
     QWidget *lineNumberArea;
+    QFont textFont;
 private:
     //void keyPressEvent(QKeyEvent *event) override;
 };
