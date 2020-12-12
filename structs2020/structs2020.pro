@@ -22,13 +22,15 @@ SOURCES += \
     mainwindow.cpp \
     popup.cpp \
     previewpage.cpp \
+    qtextbrowserfixed.cpp \
     toolbar.cpp
 
 HEADERS += \
     codeeditor.h \
     document.h \
     mainwindow.h \
-    previewpage.h
+    previewpage.h \
+    qtextbrowserfixed.h
 
 FORMS += \
     mainwindow.ui

@@ -4,6 +4,7 @@
 #include <QPlainTextEdit>
 #include <QPainter>
 #include <QTextBlock>
+#include <QEvent>
 
 class LineNumberArea;
 
@@ -18,7 +19,7 @@ public:
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();
-
+    void wheelEvent(QWheelEvent *event) override;
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
@@ -29,8 +30,8 @@ private slots:
 
 private:
     QWidget *lineNumberArea;
+    QFont textFont;
 };
-
 
 class LineNumberArea : public QWidget
 {

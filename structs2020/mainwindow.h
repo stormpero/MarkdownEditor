@@ -11,6 +11,7 @@
 #include "previewpage.h"
 #include "document.h"
 #include "codeeditor.h"
+#include "qtextbrowserfixed.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -61,15 +62,17 @@ private slots:
 //popup Windows
 public:
     int SaveDialog();
-    void WheelExpansion(QObject *object, QEvent *event);
+
 
 //Other variables
 public:
     CodeEditor *MarkdowntextEdit;
-    QTextBrowser* TextPreview;
-    bool isEnableTextPreview = false;
-    QTextBrowser* htmlPreview;
+    QTextBrowserFixed* TextPreview;
+    QTextBrowserFixed* htmlPreview;
+
     QWebEngineView* htmlWeb;
+
+    bool isEnableTextPreview = false;
 
     //Иконки
     QAction* html_ico;

@@ -122,6 +122,9 @@ void MainWindow::OpenFile()
         qDebug() << "Read and write paths are empty";
         return;
     }
+    if (file.isOpen())
+        file.close();
+
     file.setFileName(fileName);
     if (!file.open(QIODevice::ReadWrite))
     {

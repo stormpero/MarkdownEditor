@@ -22,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::IntitialiseApp()
 {
     MarkdowntextEdit = new CodeEditor;
-    TextPreview = new QTextBrowser;
-    htmlPreview = new QTextBrowser;
+    TextPreview = new QTextBrowserFixed;
+    htmlPreview = new QTextBrowserFixed;
 
     htmlWeb = new QWebEngineView;
 
