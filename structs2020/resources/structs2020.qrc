@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>index.html</file>
+        <file>3rdparty/markdown.css</file>
+        <file>3rdparty/marked.js</file>
+
+                <file>img/window_ico.ico</file>
+                <file>img/Toolbar/extra_html.ico</file>
+                <file>img/Toolbar/extra_markdown.ico</file>
+                <file>img/Toolbar/extra_txt.ico</file>
+                <file>img/Toolbar/image.ico</file>
+                <file>img/Toolbar/link.ico</file>
+                <file>img/Toolbar/newfile.ico</file>
+                <file>img/Toolbar/openfile.ico</file>
+                <file>img/Toolbar/save.ico</file>
+                <file>img/Toolbar/saveas.ico</file>
+                <file>img/Toolbar/tohtml.ico</file>
+                <file>img/Toolbar/topdf.ico</file>
+    </qresource>
+</RCC>

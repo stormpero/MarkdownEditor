@@ -6,6 +6,12 @@
 #include <QtWidgets>
 #include <QPrinter>
 #include "codeeditor.h"
+//#include <QtWebView>
+//#include <QtWebEngineCore>
+//include <QtWebEngineWidgets>
+#include <QWebEngineView>
+#include "previewpage.h"
+#include "document.h"
 //------------------//
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +44,7 @@ private:
 //Toolbar variable to set it enabled or disabled when needed
 private:
     QToolBar *WorkToolBar;
+    Document m_content;
 
 //Toolbar buttons
 private slots:
@@ -51,6 +58,7 @@ private slots:
     void InsertImg();
     void InsertLink();
     void ExportToPDF();
+    void ExportHtml();
 
 //popup Windows
 public:
@@ -63,6 +71,7 @@ public:
     QTextBrowser* TextPreview;
     bool isEnableTextPreview = false;
     QTextBrowser* htmlPreview;
+    QWebEngineView* htmlWeb;
 
     //Иконки
     QAction* html_ico;
@@ -71,6 +80,7 @@ public:
 
     //Файл, с которым происходит работа
     QFile file;
+    bool isLoadFinished = false;
     bool isExistButNoWay = false;
     bool isChanged = false;
 };

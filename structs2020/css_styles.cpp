@@ -26,5 +26,5 @@ void MainWindow::initializationCSS()
 
     MarkdowntextEdit->setStyleSheet(verticalScroll);
     TextPreview->setStyleSheet(verticalScroll);
-    htmlPreview->setStyleSheet(verticalScroll);
+    //htmlPreview->setStyleSheet(verticalScroll);
 }

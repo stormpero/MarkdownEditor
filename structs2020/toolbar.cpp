@@ -16,8 +16,8 @@ QToolBar* MainWindow::createWorkToolBar()
 {
     QToolBar* bar = new QToolBar("Work ToolBar");
 
-    bar->addAction(QPixmap(":/img/Toolbar/save.ico"), "Сохранить", this, SLOT(SaveFile()));
-    bar->addAction(QPixmap(":/img/Toolbar/saveas.ico"), "Сохранить как", this, SLOT(SaveFileAs()));
+    bar->addAction(QPixmap(":img/Toolbar/save.ico"), "Сохранить", this, SLOT(SaveFile()));
+    bar->addAction(QPixmap(":img/Toolbar/saveas.ico"), "Сохранить как", this, SLOT(SaveFileAs()));
 
     bar->addSeparator();
 
@@ -26,8 +26,8 @@ QToolBar* MainWindow::createWorkToolBar()
 
     bar->addSeparator();
 
-    bar->addAction(QPixmap(":/img/Toolbar/tohtml.ico"), "Экспорт в html");
     bar->addAction(QPixmap(":/img/Toolbar/topdf.ico"), "Экспорт в pdf", this, SLOT(ExportToPDF()));
+    bar->addAction(QPixmap(":/img/Toolbar/tohtml.ico"), "Экспорт в html", this, SLOT(ExportHtml()));
 
     bar->setMovable(false);
     bar->setIconSize(QSize(25,25));
@@ -77,11 +77,13 @@ void MainWindow::PreviewCheck()
 }
 void MainWindow::HtmlCheck()
 {
+
     htmlPreview->hide();
     if (html_ico->isChecked())
     {
         htmlPreview->show();
     }
+
 }
 
 void MainWindow::CreateNewFile()
@@ -231,4 +233,23 @@ void MainWindow::ExportToPDF()
 
      TextPreview->print(&printer);
 }
+void MainWindow::ExportHtml()
+{
+    QString fileName = QFileDialog::getSaveFileName(0, "Экспорт","", "*.html");
+
+    if(fileName.isEmpty())
+    {
+        qDebug() << "Write path is empty";
+        return;
+    }
+    file.setFileName(fileName);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "Error while opening for writing";
+        return;
+    }
+    file.write(htmlPreview->toPlainText().toStdString().data());
+    file.close();
+}
+
 
