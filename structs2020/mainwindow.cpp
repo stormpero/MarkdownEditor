@@ -1,12 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QWebChannel>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    qDebug() << "App path : " << qApp->applicationFilePath();
     //set title & ico
     setWindowTitle("Markdown Editor");
     setWindowIcon(QIcon(":/img/window_ico.ico"));
@@ -31,13 +30,13 @@ void MainWindow::IntitialiseApp()
     PreviewPage *page = new PreviewPage(this);
     htmlWeb->setPage(page);
 
+
     QWebChannel *channel = new QWebChannel(this);
     channel->registerObject(QStringLiteral("content"), &m_content);
     page->setWebChannel(channel);
 
-    htmlWeb->setUrl(QUrl("qrc:/index.html"));
 
-    TextPreview->setReadOnly(true);
+    htmlWeb->setUrl(QUrl("qrc:/index.html"));
 
     ui->boxl->addWidget(MarkdowntextEdit);
     ui->boxl->addWidget(TextPreview);
@@ -47,7 +46,7 @@ void MainWindow::IntitialiseApp()
     TextPreview->hide();
     htmlPreview->hide();
 
-    MarkdowntextEdit->installEventFilter(this);
+    //MarkdowntextEdit->installEventFilter(this);
 }
 
 void MainWindow::CreateToolBars()
@@ -67,10 +66,12 @@ void MainWindow::InitialiseConnections()
     {
         htmlWeb->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
         {
-            QRegExp rxlen("(<div id=\"placeholder\">.*</div>)");
+            QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
             rxlen.indexIn(v.toString());
             htmlPreview->setPlainText(rxlen.cap(1));
+            htmlPreview->toHtml();
         });
+
         m_content.setText(MarkdowntextEdit->toPlainText());
         if(!isChanged)
         {
@@ -88,7 +89,6 @@ void MainWindow::InitialiseConnections()
     connect(ui->action_saveAs, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
     connect(ui->action_link, SIGNAL(triggered()), this, SLOT(InsertLink()));
     connect(ui->action_img, SIGNAL(triggered()), this, SLOT(InsertImg()));
-
 }
 
 

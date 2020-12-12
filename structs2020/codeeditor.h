@@ -2,6 +2,8 @@
 #define CODEEDITOR_H
 
 #include <QPlainTextEdit>
+#include <QPainter>
+#include <QTextBlock>
 
 class LineNumberArea;
 
@@ -27,8 +29,6 @@ private slots:
 
 private:
     QWidget *lineNumberArea;
-private:
-    //void keyPressEvent(QKeyEvent *event) override;
 };
 
 

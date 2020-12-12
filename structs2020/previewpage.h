@@ -2,6 +2,7 @@
 #define PREVIEWPAGE_H
 
 #include <QWebEnginePage>
+#include <QDesktopServices>
 
 class PreviewPage : public QWebEnginePage
 {

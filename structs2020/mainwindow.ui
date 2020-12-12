@@ -55,7 +55,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_newFile">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/newfile.ico</normaloff>:/img/Toolbar/newfile.ico</iconset>
    </property>
    <property name="text">
@@ -67,7 +67,7 @@
   </action>
   <action name="action_openFile">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/openfile.ico</normaloff>:/img/Toolbar/openfile.ico</iconset>
    </property>
    <property name="text">
@@ -79,7 +79,7 @@
   </action>
   <action name="action_save">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/save.ico</normaloff>:/img/Toolbar/save.ico</iconset>
    </property>
    <property name="text">
@@ -91,7 +91,7 @@
   </action>
   <action name="action_saveAs">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/saveas.ico</normaloff>:/img/Toolbar/saveas.ico</iconset>
    </property>
    <property name="text">
@@ -103,7 +103,7 @@
   </action>
   <action name="action_toHTML">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/tohtml.ico</normaloff>:/img/Toolbar/tohtml.ico</iconset>
    </property>
    <property name="text">
@@ -112,7 +112,7 @@
   </action>
   <action name="action_toPDF">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/topdf.ico</normaloff>:/img/Toolbar/topdf.ico</iconset>
    </property>
    <property name="text">
@@ -121,7 +121,7 @@
   </action>
   <action name="action_link">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/link.ico</normaloff>:/img/Toolbar/link.ico</iconset>
    </property>
    <property name="text">
@@ -130,7 +130,7 @@
   </action>
   <action name="action_img">
    <property name="icon">
-    <iconset resource="resourse.qrc">
+    <iconset resource="resources/structs2020.qrc">
      <normaloff>:/img/Toolbar/image.ico</normaloff>:/img/Toolbar/image.ico</iconset>
    </property>
    <property name="text">
@@ -139,7 +139,7 @@
   </action>
  </widget>
  <resources>
-  <include location="resourse.qrc"/>
+  <include location="resources/structs2020.qrc"/>
  </resources>
  <connections/>
 </ui>

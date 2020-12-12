@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+
 QToolBar* MainWindow::createMainToolBar()
 {
     QToolBar* bar = new QToolBar("Main ToolBar");

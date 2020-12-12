@@ -5,14 +5,12 @@
 #include <QPlainTextEdit>
 #include <QtWidgets>
 #include <QPrinter>
-#include "codeeditor.h"
-//#include <QtWebView>
-//#include <QtWebEngineCore>
-//include <QtWebEngineWidgets>
 #include <QWebEngineView>
+#include <QWebChannel>
+
 #include "previewpage.h"
 #include "document.h"
-//------------------//
+#include "codeeditor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
