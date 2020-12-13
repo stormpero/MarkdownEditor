@@ -270,7 +270,5 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (isChanged && (justCreated || file.isOpen()) && SaveDialog() == -1)
         return;
 
-    qDebug() << "closeEvent";
-
     QMainWindow::closeEvent(event);
  }
