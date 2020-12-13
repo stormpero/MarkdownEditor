@@ -3,7 +3,6 @@
         <file>index.html</file>
         <file>3rdparty/markdown.css</file>
         <file>3rdparty/marked.js</file>
-
         <file>img/window_ico.ico</file>
         <file>img/Toolbar/extra_html.ico</file>
         <file>img/Toolbar/extra_markdown.ico</file>
@@ -16,5 +15,6 @@
         <file>img/Toolbar/saveas.ico</file>
         <file>img/Toolbar/tohtml.ico</file>
         <file>img/Toolbar/topdf.ico</file>
+        <file>img/Toolbar/exit.ico</file>
     </qresource>
 </RCC>

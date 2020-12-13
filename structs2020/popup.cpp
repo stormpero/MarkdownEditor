@@ -13,11 +13,11 @@ int MainWindow::SaveDialog()
     {
         SaveFile();
     }
-
     else if (k == QMessageBox::Cancel)
         return -1;
 
     file.close();
+    return 0;
 }
 
 void MainWindow::disableMenu(bool a)

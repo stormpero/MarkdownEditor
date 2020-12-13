@@ -95,6 +95,7 @@ void MainWindow::InitialiseConnections()
     connect(ui->action_saveAs, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
     connect(ui->action_link, SIGNAL(triggered()), this, SLOT(InsertLink()));
     connect(ui->action_img, SIGNAL(triggered()), this, SLOT(InsertImg()));
+    connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
 }
 
 

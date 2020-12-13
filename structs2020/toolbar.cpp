@@ -255,4 +255,10 @@ void MainWindow::ExportHtml()
     file.close();
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+ {
+    if (isChanged && (justCreated || file.isOpen()) && SaveDialog() == -1)
+        return;
 
+    QMainWindow::closeEvent(event);
+ }

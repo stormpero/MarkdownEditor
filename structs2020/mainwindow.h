@@ -58,7 +58,7 @@ private slots:
     void InsertLink();
     void ExportToPDF();
     void ExportHtml();
-
+    void closeEvent(QCloseEvent *event);
 //popup Windows
 public:
     int SaveDialog();

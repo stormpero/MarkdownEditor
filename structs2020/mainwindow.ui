@@ -41,6 +41,8 @@
     <addaction name="separator"/>
     <addaction name="action_toHTML"/>
     <addaction name="action_toPDF"/>
+    <addaction name="separator"/>
+    <addaction name="action_exit"/>
    </widget>
    <widget class="QMenu" name="menu_add">
     <property name="title">
@@ -135,6 +137,15 @@
    </property>
    <property name="text">
     <string>Изображение</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/exit.ico</normaloff>:/img/Toolbar/exit.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
    </property>
   </action>
  </widget>

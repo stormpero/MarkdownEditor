@@ -75,10 +75,12 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
     QPainter painter(lineNumberArea);
     painter.fillRect(event->rect(), QColor(215, 215, 215));
+
     QFont textFont;
     textFont = painter.font();
     textFont.setPointSize(lineNumberAreaFontSize);
     painter.setFont(textFont);
+
     QTextBlock block = firstVisibleBlock();
     int blockNumber = block.blockNumber();
     int top = qRound(blockBoundingGeometry(block).translated(contentOffset()).top());
