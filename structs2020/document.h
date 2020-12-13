@@ -13,8 +13,6 @@ public:
 
     void setText(const QString &text);
 
-    QString getText();
-
 signals:
     void textChanged(const QString &text);
 

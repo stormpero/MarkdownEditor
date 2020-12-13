@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     //set title & ico
     setWindowTitle("Markdown Editor");
     setWindowIcon(QIcon(":/img/window_ico.ico"));
@@ -61,24 +62,29 @@ void MainWindow::CreateToolBars()
 
 void MainWindow::InitialiseConnections()
 {
-    connect(MarkdowntextEdit, &QPlainTextEdit::textChanged,
+    connect(MarkdowntextEdit, &CodeEditor::textChanged,
             [this]()
     {
-        htmlWeb->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
-        {
-            QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
-            rxlen.indexIn(v.toString());
-            htmlPreview->setPlainText(rxlen.cap(1));
-            htmlPreview->toHtml();
-        });
-
-        m_content.setText(MarkdowntextEdit->toPlainText());
         if(!isChanged)
         {
             isChanged = true;
             setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
         }
-        TextPreview->setMarkdown(MarkdowntextEdit->toPlainText());
+        // Check if htmlPreview or TextPreview are visible. Only after that convert the text
+        if(htmlPreview->isVisible())
+        {
+            m_content.setText(MarkdowntextEdit->toPlainText());
+            htmlWeb->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
+            {
+                QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
+                rxlen.indexIn(v.toString());
+                htmlPreview->setPlainText(rxlen.cap(1));
+            });
+        }
+        if(TextPreview->isVisible())
+        {
+            TextPreview->setMarkdown(MarkdowntextEdit->toPlainText());
+        }
     });
 
 

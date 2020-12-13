@@ -7,8 +7,6 @@
 
 class QTextBrowserFixed : public QTextBrowser
 {
-    Q_OBJECT
-
 public:
     QTextBrowserFixed(QWidget *parent = nullptr);
 

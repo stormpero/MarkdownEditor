@@ -9,16 +9,12 @@ void QTextBrowserFixed::wheelEvent(QWheelEvent *event)
     {
         if(event->delta() > 0)
         {
-            if(this->font().pointSize() != 50)
-                this->zoomIn(1);
-            else
+            if(this->font().pointSize() == 50)
                 return;
         }
         else
         {
-            if(this->font().pointSize() != 8)
-                this->zoomOut(1);
-            else
+            if(this->font().pointSize() == 8)
                 return;
         }
     }

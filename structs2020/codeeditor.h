@@ -30,7 +30,9 @@ private slots:
 
 private:
     QWidget *lineNumberArea;
-    QFont textFont;
+    int lineNumberAreaFontSize = 8;
+
+    QPainter *painter;
 };
 
 class LineNumberArea : public QWidget

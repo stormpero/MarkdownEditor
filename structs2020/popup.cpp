@@ -3,20 +3,21 @@
 
 int MainWindow::SaveDialog()
 {
-    if(isChanged)
+
+    int k = QMessageBox::warning(this, tr("Markdown Editor"),
+                                 tr("Документ был изменён\n"
+                                    "Вы хотите сохранить свои изменения?"),
+                                 QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Save);
+
+    if (k == QMessageBox::Save)
     {
-        int k = QMessageBox::warning(this, tr("Markdown Editor"),
-                                     tr("Документ был изменён\n"
-                                        "Вы хотите сохранить свои изменения?"),
-                                     QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel, QMessageBox::Save);
-
-        if (k == QMessageBox::Save)
-            SaveFile();
-
-        else if (k == QMessageBox::Cancel)
-            return -1;
+        SaveFile();
     }
-    return 0;
+
+    else if (k == QMessageBox::Cancel)
+        return -1;
+
+    file.close();
 }
 
 void MainWindow::disableMenu(bool a)

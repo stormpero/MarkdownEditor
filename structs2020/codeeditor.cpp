@@ -1,5 +1,5 @@
 #include "codeeditor.h"
-
+#include <QDebug>
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
     lineNumberArea = new LineNumberArea(this);
@@ -75,11 +75,10 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
     QPainter painter(lineNumberArea);
     painter.fillRect(event->rect(), QColor(215, 215, 215));
-
+    QFont textFont;
     textFont = painter.font();
-    textFont.setPointSize(10);
+    textFont.setPointSize(lineNumberAreaFontSize);
     painter.setFont(textFont);
-
     QTextBlock block = firstVisibleBlock();
     int blockNumber = block.blockNumber();
     int top = qRound(blockBoundingGeometry(block).translated(contentOffset()).top());
@@ -107,13 +106,21 @@ void CodeEditor::wheelEvent(QWheelEvent *event)
     {
         if(event->delta() > 0)
         {
+            qDebug() << this->font().pointSize();
             if(this->font().pointSize() != 50)
-                this->zoomIn(2);
+            {
+                lineNumberAreaFontSize++;
+                this->zoomIn(1);
+            }
         }
         else
         {
+            qDebug() << this->font().pointSize();
             if(this->font().pointSize() != 8)
-            this->zoomOut(2);
+            {
+                lineNumberAreaFontSize--;
+                this->zoomOut(1);
+            }
         }
     }
     QPlainTextEdit::wheelEvent(event);

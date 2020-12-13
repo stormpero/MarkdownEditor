@@ -82,7 +82,7 @@ public:
     //Файл, с которым происходит работа
     QFile file;
     bool isLoadFinished = false;
-    bool isExistButNoWay = false;
+    bool justCreated = false;
     bool isChanged = false;
 };
 #endif // MAINWINDOW_H
