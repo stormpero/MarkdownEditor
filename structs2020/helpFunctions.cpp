@@ -31,4 +31,3 @@ void MainWindow::disableMenu(bool a)
 }
 
 
-

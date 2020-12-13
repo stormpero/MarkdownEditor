@@ -18,9 +18,9 @@ SOURCES += \
     codeeditor.cpp \
     css_styles.cpp \
     document.cpp \
+    helpFunctions.cpp \
     main.cpp \
     mainwindow.cpp \
-    popup.cpp \
     previewpage.cpp \
     qtextbrowserfixed.cpp \
     toolbar.cpp

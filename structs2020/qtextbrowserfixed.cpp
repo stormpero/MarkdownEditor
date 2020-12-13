@@ -9,12 +9,12 @@ void QTextBrowserFixed::wheelEvent(QWheelEvent *event)
     {
         if(event->delta() > 0)
         {
-            if(this->font().pointSize() == 50)
+            if(this->font().pointSize() >= 50)
                 return;
         }
         else
         {
-            if(this->font().pointSize() == 8)
+            if(this->font().pointSize() <= 8)
                 return;
         }
     }

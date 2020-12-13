@@ -69,13 +69,11 @@ void MainWindow::MarkdowneditCheck()
 void MainWindow::PreviewCheck()
 {
     TextPreview->hide();
-    isEnableTextPreview = false;
     if (text_ico->isChecked())
     {
         TextPreview->show();
         //in other words we give signal that we can convert info from markdown text edit to TextPreview
         emit MarkdowntextEdit->textChanged();
-        isEnableTextPreview = true;
     }
 }
 void MainWindow::HtmlCheck()
@@ -124,9 +122,11 @@ void MainWindow::OpenFile()
         qDebug() << "Read and write paths are empty";
         return;
     }
+    if(file.isOpen())
+        file.close();
 
     file.setFileName(fileName);
-    if (!file.open(QIODevice::ReadWrite))
+    if (!file.open(QIODevice::ReadOnly))
     {
         qDebug() << "Error while opening for writing and reading";
         return;
@@ -160,10 +160,17 @@ void MainWindow::SaveFile()
         SaveFileAs();
         return;
     }
+    file.close();
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+    {
+        qDebug() << "Error while opening for writing";
+        return;
+    }
 
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
     setWindowTitle(QString(windowTitle().remove(0,1)));
-
+    file.close();
+    file.open(QIODevice::ReadOnly);
     isChanged = false;
     justCreated = false;
 }
@@ -179,14 +186,17 @@ int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel
         qDebug() << "Write path is empty";
         return -1;
     }
+    file.close();
     file.setFileName(fileName);
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
         qDebug() << "Error while opening for writing";
         return -1;
     }
     file.write(MarkdowntextEdit->toPlainText().toStdString().data());
     setWindowTitle(QString("%1 - Markdown Editor").arg(file.fileName()));
+    file.close();
+    file.open(QIODevice::ReadOnly);
     isChanged = false;
     justCreated = false;
 

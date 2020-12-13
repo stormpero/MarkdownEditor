@@ -13,6 +13,7 @@
 #include "codeeditor.h"
 #include "qtextbrowserfixed.h"
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -72,15 +73,17 @@ public:
 
     QWebEngineView* htmlWeb;
 
-    bool isEnableTextPreview = false;
 
     //Иконки
     QAction* html_ico;
     QAction* text_ico;
     QAction* markdown_ico;
 
+
+
     //Файл, с которым происходит работа
     QFile file;
+
     bool isLoadFinished = false;
     bool justCreated = false;
     bool isChanged = false;

@@ -108,7 +108,6 @@ void CodeEditor::wheelEvent(QWheelEvent *event)
     {
         if(event->delta() > 0)
         {
-            qDebug() << this->font().pointSize();
             if(this->font().pointSize() != 50)
             {
                 lineNumberAreaFontSize++;
@@ -117,7 +116,6 @@ void CodeEditor::wheelEvent(QWheelEvent *event)
         }
         else
         {
-            qDebug() << this->font().pointSize();
             if(this->font().pointSize() != 8)
             {
                 lineNumberAreaFontSize--;
