@@ -16,5 +16,7 @@
         <file>img/Toolbar/tohtml.ico</file>
         <file>img/Toolbar/topdf.ico</file>
         <file>img/Toolbar/exit.ico</file>
+        <file>img/header.png</file>
+        <file>img/Toolbar/help.ico</file>
     </qresource>
 </RCC>

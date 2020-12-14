@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     initializationCSS();
     //Create Toolbars
     CreateToolBars();
+    //Create StatusBar
+    CreateStatusBar();
     //Make connections to events
     InitialiseConnections();
 }
@@ -85,17 +87,29 @@ void MainWindow::InitialiseConnections()
         {
             TextPreview->setMarkdown(MarkdowntextEdit->toPlainText());
         }
-    });
 
+    });
+    connect(MarkdowntextEdit, &CodeEditor::cursorPositionChanged,
+            [this]()
+    {
+        cursorPosition->setText(QString("Строка: " + QString::number(MarkdowntextEdit->textCursor().blockNumber() + 1)));
+    });
 
     //MenuBar
     connect(ui->action_newFile, SIGNAL(triggered()), this, SLOT(CreateNewFile()));
     connect(ui->action_openFile, SIGNAL(triggered()), this, SLOT(OpenFile()));
+
     connect(ui->action_save, SIGNAL(triggered()), this, SLOT(SaveFile()));
     connect(ui->action_saveAs, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
+
     connect(ui->action_link, SIGNAL(triggered()), this, SLOT(InsertLink()));
     connect(ui->action_img, SIGNAL(triggered()), this, SLOT(InsertImg()));
+
+    connect(ui->action_aboutProgram, SIGNAL(triggered()), this, SLOT(AboutProgram()));
+
     connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
+
+
 }
 
 

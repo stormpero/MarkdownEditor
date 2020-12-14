@@ -23,6 +23,7 @@ SOURCES += \
     mainwindow.cpp \
     previewpage.cpp \
     qtextbrowserfixed.cpp \
+    statusbar.cpp \
     toolbar.cpp
 
 HEADERS += \

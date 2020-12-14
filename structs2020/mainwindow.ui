@@ -51,8 +51,15 @@
     <addaction name="action_link"/>
     <addaction name="action_img"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="action_aboutProgram"/>
+   </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_add"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_newFile">
@@ -146,6 +153,15 @@
    </property>
    <property name="text">
     <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_aboutProgram">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/help.ico</normaloff>:/img/Toolbar/help.ico</iconset>
+   </property>
+   <property name="text">
+    <string>О программе</string>
    </property>
   </action>
  </widget>

@@ -33,6 +33,8 @@ private:
     int lineNumberAreaFontSize = 8;
 
     QPainter *painter;
+
+
 };
 
 class LineNumberArea : public QWidget

@@ -34,6 +34,7 @@ private:
     void CreateToolBars();
     void InitialiseConnections();
     void disableMenu(bool a);
+    void CreateStatusBar();
 
 //Toolbar functions
 private:
@@ -59,6 +60,8 @@ private slots:
     void InsertLink();
     void ExportToPDF();
     void ExportHtml();
+    void AboutProgram();
+    void MarkdownHelp();
     void closeEvent(QCloseEvent *event);
 //popup Windows
 public:
@@ -74,12 +77,14 @@ public:
     QWebEngineView* htmlWeb;
 
 
-    //Иконки
+    //icons
     QAction* html_ico;
     QAction* text_ico;
     QAction* markdown_ico;
 
-
+    //StatusBar
+    QLabel* cursorPosition;
+    QLabel* fileSize;
 
     //Файл, с которым происходит работа
     QFile file;

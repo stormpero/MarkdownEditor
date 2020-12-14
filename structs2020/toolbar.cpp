@@ -147,7 +147,19 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
     isChanged = false;
     justCreated = false;
-    statusBar()->showMessage(QString::number(file.size()));
+    QString unit = "Б";
+    int fileSize = file.size();
+    if (fileSize > 1024)
+    {
+        fileSize /= 1024;
+        unit = "КБ";
+    }
+    else if (fileSize > 1024 * 1024)
+    {
+        fileSize /= 1024 * 1024;
+        unit = "МБ";
+    }
+    MainWindow::fileSize->setText(QString("Размер файла: %1 %2").arg(fileSize).arg(unit));
 }
 
 void MainWindow::SaveFile()
@@ -265,10 +277,34 @@ void MainWindow::ExportHtml()
     file.close();
 }
 
+void MainWindow::AboutProgram()
+{
+    QMessageBox msgBox;
+    msgBox.setParent(0);
+    msgBox.setWindowTitle(" О программе ");
+    msgBox.setText("");
+    QPixmap p;
+    p.load(":/img/header.png");
+    msgBox.setIconPixmap(p);// no sound, but with icon
+    msgBox.setWindowIcon(QIcon(":/img/window_ico.ico"));
+    msgBox.exec();
+}
+void MainWindow::MarkdownHelp()
+{
+
+}
+
+
+
+
+
+
 void MainWindow::closeEvent(QCloseEvent *event)
  {
     if (isChanged && (justCreated || file.isOpen()) && SaveDialog() == -1)
+    {
+        event->ignore();
         return;
-
+    }
     QMainWindow::closeEvent(event);
  }
