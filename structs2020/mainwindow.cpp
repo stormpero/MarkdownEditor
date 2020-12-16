@@ -78,15 +78,16 @@ void MainWindow::InitialiseConnections()
         if(TextPreview->isVisible())
         {
             m_content.setText(MarkdowntextEdit->toPlainText());
-            if(htmlPreview->isVisible())
+        }
+        if(htmlPreview->isVisible())
+        {
+            m_content.setText(MarkdowntextEdit->toPlainText());
+            TextPreview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
             {
-                TextPreview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
-                {
-                    QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
-                    rxlen.indexIn(v.toString());
-                    htmlPreview->setPlainText(rxlen.cap(1));
-                });
-            }
+                QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
+                rxlen.indexIn(v.toString());
+                htmlPreview->setPlainText(rxlen.cap(1));
+            });
         }
         updateFileSize();
     });
