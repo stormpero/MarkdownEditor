@@ -35,6 +35,7 @@ private:
     void InitialiseConnections();
     void disableMenu(bool a);
     void CreateStatusBar();
+    void updateFileSize();
 
 //Toolbar functions
 private:

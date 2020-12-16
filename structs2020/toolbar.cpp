@@ -142,24 +142,23 @@ void MainWindow::OpenFile()
     WorkToolBar->setDisabled(false);
 
     disableMenu(false);
-
     markdown_ico->setChecked(true);
     MarkdowntextEdit->show();
     isChanged = false;
     justCreated = false;
-    QString unit = "Б";
-    int fileSize = file.size();
-    if (fileSize > 1024)
-    {
-        fileSize /= 1024;
-        unit = "КБ";
-    }
-    else if (fileSize > 1024 * 1024)
-    {
-        fileSize /= 1024 * 1024;
-        unit = "МБ";
-    }
-    MainWindow::fileSize->setText(QString("Размер файла: %1 %2").arg(fileSize).arg(unit));
+//    QString unit = "Б";
+//    int fileSize = file.size();
+//    if (fileSize > 1024)
+//    {
+//        fileSize /= 1024;
+//        unit = "КБ";
+//    }
+//    else if (fileSize > 1024 * 1024)
+//    {
+//        fileSize /= 1024 * 1024;
+//        unit = "МБ";
+//    }
+//    MainWindow::fileSize->setText(QString("Размер файла: %1 %2").arg(fileSize).arg(unit));
 }
 
 void MainWindow::SaveFile()

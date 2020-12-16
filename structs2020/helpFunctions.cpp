@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#define KB 1024
+#define MB 1048576
+
 int MainWindow::SaveDialog()
 {
 
@@ -30,4 +33,20 @@ void MainWindow::disableMenu(bool a)
     ui->action_link->setDisabled(a);
 }
 
+void MainWindow::updateFileSize()
+{
+    int fileSize = MarkdowntextEdit->toPlainText().size();
+    QString unit = "Б";
+    if (fileSize > KB)
+    {
+        fileSize /= KB;
+        unit = "КБ";
+    }
+    else if (fileSize > MB)
+    {
+        fileSize /= MB;
+        unit = "МБ";
+    }
+   MainWindow::fileSize->setText(QString("Размер файла: %1 %2").arg(fileSize).arg(unit));
+}
 
