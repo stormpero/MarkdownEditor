@@ -183,17 +183,12 @@ private:
 
 private:
     CodeEditor *MarkdowntextEdit; /*! Редактор Markdown*/
-    QTextBrowserFixed* TextPreview; /*!< TODO: describe */
+    QWebEngineView* TextPreview; /*!< TODO: describe */
     QTextBrowserFixed* htmlPreview; /*!< TODO: describe */
-
-    QWebEngineView* htmlWeb; /*!< TODO: describe */
-
-
 
     QAction* html_ico; /*! Значок в */
     QAction* text_ico; /*!< TODO: describe */
     QAction* markdown_ico; /*!< TODO: describe */
-
 
     QLabel* cursorPosition; /*!< Номер на которой находится курсор */
     QLabel* fileSize; /*!< Размер файла */

@@ -26,13 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::IntitialiseApp()
 {
     MarkdowntextEdit = new CodeEditor;
-    TextPreview = new QTextBrowserFixed;
+    TextPreview = new QWebEngineView;
     htmlPreview = new QTextBrowserFixed;
 
-    htmlWeb = new QWebEngineView;
 
     PreviewPage *page = new PreviewPage(this);
-    htmlWeb->setPage(page);
+    TextPreview->setPage(page);
 
 
     QWebChannel *channel = new QWebChannel(this);
@@ -40,7 +39,7 @@ void MainWindow::IntitialiseApp()
     page->setWebChannel(channel);
 
 
-    htmlWeb->setUrl(QUrl("qrc:/index.html"));
+    TextPreview->setUrl(QUrl("qrc:/index.html"));
 
     ui->boxl->addWidget(MarkdowntextEdit);
     ui->boxl->addWidget(TextPreview);
@@ -65,6 +64,8 @@ void MainWindow::CreateToolBars()
 
 void MainWindow::InitialiseConnections()
 {
+    QThread thread(this);
+    //thread = QThread::create(CreateToolBars());
     connect(MarkdowntextEdit, &CodeEditor::textChanged,
             [this]()
     {
@@ -74,19 +75,18 @@ void MainWindow::InitialiseConnections()
             setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
         }
         // Check if htmlPreview or TextPreview are visible. Only after that convert the text
-        if(htmlPreview->isVisible())
-        {
-            m_content.setText(MarkdowntextEdit->toPlainText());
-            htmlWeb->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
-            {
-                QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
-                rxlen.indexIn(v.toString());
-                htmlPreview->setPlainText(rxlen.cap(1));
-            });
-        }
         if(TextPreview->isVisible())
         {
-            TextPreview->setMarkdown(MarkdowntextEdit->toPlainText());
+            m_content.setText(MarkdowntextEdit->toPlainText());
+            if(htmlPreview->isVisible())
+            {
+                TextPreview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
+                {
+                    QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
+                    rxlen.indexIn(v.toString());
+                    htmlPreview->setPlainText(rxlen.cap(1));
+                });
+            }
         }
         updateFileSize();
     });
