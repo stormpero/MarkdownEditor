@@ -19,7 +19,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 /*!
- \brief
+ \brief Основной класс
 
 */
 class MainWindow : public QMainWindow
@@ -34,47 +34,47 @@ public:
     */
     MainWindow(QWidget *parent = nullptr);
     /*!
-     \brief
+     \brief Деструктор
 
     */
     ~MainWindow();
 
 
 private:
-    Ui::MainWindow *ui; /*!< TODO: describe */
+    Ui::MainWindow *ui; /*!< Интерфейс программы */
     /*!
-     \brief
+     \brief Иницилизация CSS стилей
 
     */
     void initializationCSS();
     /*!
-     \brief
+     \brief Создание полей для текста
 
     */
     void IntitialiseApp();
     /*!
-     \brief
+     \brief Создание панели инструментов
 
     */
     void CreateToolBars();
     /*!
-     \brief
+     \brief Инициализация связей между объектами и кнопками
 
     */
     void InitialiseConnections();
     /*!
-     \brief
+     \brief Отключение кнопок меню
 
      \param a
     */
     void disableMenu(bool a);
     /*!
-     \brief
+     \brief Создание статус бара
 
     */
     void CreateStatusBar();
     /*!
-     \brief
+     \brief Обновление размера файла
 
     */
     void updateFileSize();
@@ -82,19 +82,19 @@ private:
 
 private:
     /*!
-     \brief
+     \brief Создание основной панели инструментов
 
      \return QToolBar
     */
     QToolBar* createMainToolBar();
     /*!
-     \brief
+     \brief Создание кнопок
 
      \return QToolBar
     */
     QToolBar* createExtraToolBar();
     /*!
-     \brief
+     \brief Создание дополнительной панели задач
 
      \return QToolBar
     */
@@ -108,23 +108,29 @@ private:
 
 private slots:
     /*!
-     * \brief MarkdowneditCheck
+     * \brief Отображение поля редактирования текста
      */
     void MarkdowneditCheck();
+    /*!
+     * \brief Отображение превью
+     */
     void PreviewCheck();
+    /*!
+     * \brief Отображение предпросмотра HTML
+     */
     void HtmlCheck();
     /*!
-     \brief
+     \brief Создать новый файл
 
     */
     void CreateNewFile();
     /*!
-     \brief
+     \brief Открыть файл
 
     */
     void OpenFile();
     /*!
-     \brief
+     \brief Сохранить файл
 
     */
     void SaveFile();
@@ -183,21 +189,20 @@ private:
 
 private:
     CodeEditor *MarkdowntextEdit; /*!< Редактор Markdown*/
-    QWebEngineView* TextPreview; /*!< Предпросмотр текста */
-    QTextBrowserFixed* htmlPreview; /*!< TODO: describe */
+    QWebEngineView* Preview; /*!< Предпросмотр */
+    QTextBrowserFixed* htmlPreview; /*!< Предпросмотр HTML */
 
-    QAction* html_ico; /*! Значок в */
-    QAction* text_ico; /*!< TODO: describe */
-    QAction* markdown_ico; /*!< TODO: describe */
+    QAction* html_ico; /*!< Кнопка отображения HTML */
+    QAction* text_ico; /*!< Кнопка отображения текста */
+    QAction* markdown_ico; /*!< Кнопка отображения редактора Markdown */
 
-    QLabel* cursorPosition; /*!< Номер на которой находится курсор */
+    QLabel* cursorPosition; /*!< Номер строки на которой находится курсор */
     QLabel* fileSize; /*!< Размер файла */
 
 
-    QFile file; /*! Файл с которым происходит работа */
+    QFile file; /*!< Файл с которым происходит работа */
 
-    bool isLoadFinished = false; /*!< TODO: describe */
-    bool justCreated = false; /*! Файл созданный в программме, н */
-    bool isChanged = false; /*!< TODO: describe */
+    bool justCreated = false; /*!< Только что созданный файл, который не имеет пути */
+    bool isChanged = false; /*!< Файл изменился */
 };
 #endif // MAINWINDOW_H

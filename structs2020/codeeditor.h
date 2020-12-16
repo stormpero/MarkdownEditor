@@ -8,26 +8,6 @@
 
 class LineNumberArea;
 
-/*!
-    \class CodeEditor
-    \brief The QVector3D class represents a vector or vertex in 3D space.
-    \since 4.6
-    \ingroup painting-3D
-
-    Vectors are one of the main building blocks of 3D representation and
-    drawing.  They consist of three coordinates, traditionally called
-    x, y, and z.
-
-    The QVector3D class can also be used to represent vertices in 3D space.
-    We therefore do not need to provide a separate vertex class.
-
-    \note By design values in the QVector3D instance are stored as \c float.
-    This means that on platforms where the \c qreal arguments to QVector3D
-    functions are represented by \c double values, it is possible to
-    lose precision.
-
-    \sa QVector2D, QVector4D, QQuaternion
-*/
 
 class CodeEditor : public QPlainTextEdit
 {

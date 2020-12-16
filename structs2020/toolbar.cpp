@@ -64,15 +64,14 @@ void MainWindow::MarkdowneditCheck()
     {
         MarkdowntextEdit->show();
     }
-
 }
 void MainWindow::PreviewCheck()
 {
-    TextPreview->hide();
+    Preview->hide();
     if (text_ico->isChecked())
     {
-        TextPreview->show();
-        //in other words we give signal that we can convert info from markdown text edit to TextPreview
+        Preview->show();
+        //in other words we give signal that we can convert info from markdown text edit to Preview
         emit MarkdowntextEdit->textChanged();
     }
 }
@@ -231,13 +230,13 @@ void MainWindow::ExportToPDF()
          qDebug() << "Read and write paths are empty";
          return;
      }
-     if(TextPreview->isHidden())
+     if(Preview->isHidden())
      {
-         TextPreview->setVisible(true);
+         Preview->setVisible(true);
          emit MarkdowntextEdit->textChanged();
      }
-    TextPreview->page()->printToPdf(filePath);
-    TextPreview->setVisible(false);
+    Preview->page()->printToPdf(filePath);
+    Preview->setVisible(false);
 }
 
 void MainWindow::ExportHtml()

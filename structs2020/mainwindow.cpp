@@ -15,10 +15,13 @@ MainWindow::MainWindow(QWidget *parent)
     //Create Texteditors & Textviews
     IntitialiseApp();
     initializationCSS();
+
     //Create Toolbars
     CreateToolBars();
+
     //Create StatusBar
     CreateStatusBar();
+
     //Make connections to events
     InitialiseConnections();
 }
@@ -26,30 +29,27 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::IntitialiseApp()
 {
     MarkdowntextEdit = new CodeEditor;
-    TextPreview = new QWebEngineView;
+    Preview = new QWebEngineView;
     htmlPreview = new QTextBrowserFixed;
 
 
     PreviewPage *page = new PreviewPage(this);
-    TextPreview->setPage(page);
+    Preview->setPage(page);
 
 
     QWebChannel *channel = new QWebChannel(this);
     channel->registerObject(QStringLiteral("content"), &m_content);
     page->setWebChannel(channel);
 
-
-    TextPreview->setUrl(QUrl("qrc:/index.html"));
+    Preview->setUrl(QUrl("qrc:/index.html"));
 
     ui->boxl->addWidget(MarkdowntextEdit);
-    ui->boxl->addWidget(TextPreview);
+    ui->boxl->addWidget(Preview);
     ui->boxl->addWidget(htmlPreview);
 
     MarkdowntextEdit->hide();
-    TextPreview->hide();
+    Preview->hide();
     htmlPreview->hide();
-
-    //MarkdowntextEdit->installEventFilter(this);
 }
 
 void MainWindow::CreateToolBars()
@@ -64,8 +64,6 @@ void MainWindow::CreateToolBars()
 
 void MainWindow::InitialiseConnections()
 {
-    QThread thread(this);
-    //thread = QThread::create(CreateToolBars());
     connect(MarkdowntextEdit, &CodeEditor::textChanged,
             [this]()
     {
@@ -74,15 +72,15 @@ void MainWindow::InitialiseConnections()
             isChanged = true;
             setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
         }
-        // Check if htmlPreview or TextPreview are visible. Only after that convert the text
-        if(TextPreview->isVisible())
+        // Check if htmlPreview or Preview are visible. Only after that convert the text
+        if(Preview->isVisible())
         {
             m_content.setText(MarkdowntextEdit->toPlainText());
         }
         if(htmlPreview->isVisible())
         {
             m_content.setText(MarkdowntextEdit->toPlainText());
-            TextPreview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
+            Preview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
             {
                 QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
                 rxlen.indexIn(v.toString());
