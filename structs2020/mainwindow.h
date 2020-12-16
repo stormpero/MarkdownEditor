@@ -182,8 +182,8 @@ private:
 
 
 private:
-    CodeEditor *MarkdowntextEdit; /*! Редактор Markdown*/
-    QWebEngineView* TextPreview; /*!< TODO: describe */
+    CodeEditor *MarkdowntextEdit; /*!< Редактор Markdown*/
+    QWebEngineView* TextPreview; /*!< Предпросмотр текста */
     QTextBrowserFixed* htmlPreview; /*!< TODO: describe */
 
     QAction* html_ico; /*! Значок в */
