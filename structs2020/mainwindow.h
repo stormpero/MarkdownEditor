@@ -72,10 +72,8 @@ public:
 //Other variables
 public:
     CodeEditor *MarkdowntextEdit;
-    QTextBrowserFixed* TextPreview;
+    QWebEngineView* TextPreview;
     QTextBrowserFixed* htmlPreview;
-
-    QWebEngineView* htmlWeb;
 
 
     //icons

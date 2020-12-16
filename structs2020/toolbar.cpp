@@ -146,19 +146,6 @@ void MainWindow::OpenFile()
     MarkdowntextEdit->show();
     isChanged = false;
     justCreated = false;
-//    QString unit = "Б";
-//    int fileSize = file.size();
-//    if (fileSize > 1024)
-//    {
-//        fileSize /= 1024;
-//        unit = "КБ";
-//    }
-//    else if (fileSize > 1024 * 1024)
-//    {
-//        fileSize /= 1024 * 1024;
-//        unit = "МБ";
-//    }
-//    MainWindow::fileSize->setText(QString("Размер файла: %1 %2").arg(fileSize).arg(unit));
 }
 
 void MainWindow::SaveFile()
@@ -244,11 +231,13 @@ void MainWindow::ExportToPDF()
          qDebug() << "Read and write paths are empty";
          return;
      }
-     QPrinter printer;
-     printer.setOutputFormat(QPrinter::PdfFormat);
-     printer.setOutputFileName(filePath); // устанавливаем путь к pdf файлу
-
-     TextPreview->print(&printer);
+     if(TextPreview->isHidden())
+     {
+         TextPreview->setVisible(true);
+         emit MarkdowntextEdit->textChanged();
+     }
+    TextPreview->page()->printToPdf(filePath);
+    TextPreview->setVisible(false);
 }
 
 void MainWindow::ExportHtml()
