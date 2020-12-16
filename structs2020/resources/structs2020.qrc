@@ -18,5 +18,6 @@
         <file>img/Toolbar/exit.ico</file>
         <file>img/header.png</file>
         <file>img/Toolbar/help.ico</file>
+        <file>img/Toolbar/markdownhelp.ico</file>
     </qresource>
 </RCC>

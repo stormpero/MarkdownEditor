@@ -231,14 +231,7 @@ void MainWindow::InsertImg()
 void MainWindow::InsertLink()
 {
     bool ok;
-    QString text = QInputDialog::getText( this,
-                                          "Markdown Editor",
-                                          "Введите ссылку:",
-                                          QLineEdit::Normal,
-                                          "",
-                                          &ok,
-                                          Qt::Window
-                                         );
+    QString text = QInputDialog::getText( this,"Markdown Editor","Введите ссылку:",QLineEdit::Normal,"",&ok,Qt::Window);
     if (ok && !text.isEmpty())
          MarkdowntextEdit->insertPlainText(QString("[Название](%1)").arg(text));
 }
@@ -257,6 +250,7 @@ void MainWindow::ExportToPDF()
 
      TextPreview->print(&printer);
 }
+
 void MainWindow::ExportHtml()
 {
     QString fileName = QFileDialog::getSaveFileName(0, "Экспорт","", "*.html");
@@ -280,23 +274,19 @@ void MainWindow::AboutProgram()
 {
     QMessageBox msgBox;
     msgBox.setParent(0);
-    msgBox.setWindowTitle(" О программе ");
+    msgBox.setWindowTitle("О программе - Markdown Editor");
     msgBox.setText("");
     QPixmap p;
     p.load(":/img/header.png");
-    msgBox.setIconPixmap(p);// no sound, but with icon
+    msgBox.setIconPixmap(p);
     msgBox.setWindowIcon(QIcon(":/img/window_ico.ico"));
     msgBox.exec();
 }
+
 void MainWindow::MarkdownHelp()
 {
-
+    QDesktopServices::openUrl(QUrl("https://www.markdownguide.org/"));
 }
-
-
-
-
-
 
 void MainWindow::closeEvent(QCloseEvent *event)
  {

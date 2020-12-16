@@ -106,11 +106,10 @@ void MainWindow::InitialiseConnections()
     connect(ui->action_link, SIGNAL(triggered()), this, SLOT(InsertLink()));
     connect(ui->action_img, SIGNAL(triggered()), this, SLOT(InsertImg()));
 
+    connect(ui->action_markdownhelp, SIGNAL(triggered()), this, SLOT(MarkdownHelp()));
     connect(ui->action_aboutProgram, SIGNAL(triggered()), this, SLOT(AboutProgram()));
 
     connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
-
-
 }
 
 

@@ -55,6 +55,8 @@
     <property name="title">
      <string>Справка</string>
     </property>
+    <addaction name="action_markdownhelp"/>
+    <addaction name="separator"/>
     <addaction name="action_aboutProgram"/>
    </widget>
    <addaction name="menu_file"/>
@@ -162,6 +164,15 @@
    </property>
    <property name="text">
     <string>О программе</string>
+   </property>
+  </action>
+  <action name="action_markdownhelp">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/markdownhelp.ico</normaloff>:/img/Toolbar/markdownhelp.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Справочник Markdown</string>
    </property>
   </action>
  </widget>
