@@ -153,6 +153,8 @@ void MainWindow::Link()
     QString text = QInputDialog::getText( this,"Markdown Editor","Введите ссылку:",QLineEdit::Normal,"",&ok,Qt::Window);
     if (ok && !text.isEmpty())
          MarkdowntextEdit->insertPlainText(QString("[Название](%1)").arg(text));
+    Preview->setOpenExternalLinks(true);
+    Preview->setOpenLinks(true);
 }
 void MainWindow::Image()
 {
