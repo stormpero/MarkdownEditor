@@ -21,7 +21,7 @@ QToolBar* MainWindow::createNavigationToolBar()
 
     bar->setLayoutDirection(Qt::LeftToRight);
     bar->setMovable(false);
-    bar->setIconSize(QSize(15,15));
+    bar->setIconSize(QSize(16,16));
 
     return bar;
 }

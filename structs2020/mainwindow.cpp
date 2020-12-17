@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Create Texteditors & Textviews
     IntitialiseApp();
-    initializationCSS();
+
 
     //Create Toolbars
     CreateToolBars();
@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Make connections to events
     InitialiseConnections();
+
+    initializationCSS();
 }
 
 void MainWindow::IntitialiseApp()
