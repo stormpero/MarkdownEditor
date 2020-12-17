@@ -33,8 +33,8 @@ void MainWindow::BoldText()
     {
         qDebug() << cursor.position();
         cursor.insertText("**"+ QString("strong text")+"**");
-         cursor.setPosition(cursor.position() - 12);
-         cursor.setPosition(cursor.position() + 10, QTextCursor::KeepAnchor);
+         cursor.setPosition(cursor.position() - 13);
+         cursor.setPosition(cursor.position() + 11, QTextCursor::KeepAnchor);
          MarkdowntextEdit->setTextCursor(cursor);
     }
     else
@@ -47,8 +47,8 @@ void MainWindow::ItalicText()
     {
         qDebug() << cursor.position();
         cursor.insertText("*"+ QString("emphasized text")+"*");
-         cursor.setPosition(cursor.position() - 11);
-         cursor.setPosition(cursor.position() + 9, QTextCursor::KeepAnchor);
+         cursor.setPosition(cursor.position() - 16);
+         cursor.setPosition(cursor.position() + 15, QTextCursor::KeepAnchor);
          MarkdowntextEdit->setTextCursor(cursor);
     }
     else
@@ -140,12 +140,12 @@ void MainWindow::Table()
     {
         qDebug() << cursor.position();
         cursor.insertText("|  |  |  \n|---|---|  \n|  |  |");
-         cursor.setPosition(cursor.position() - 24);
+         cursor.setPosition(cursor.position() - 28);
          cursor.setPosition(cursor.position() + 2, QTextCursor::KeepAnchor);
          MarkdowntextEdit->setTextCursor(cursor);
     }
     else
-        cursor.insertText("|" + cursor.selectedText()+ "|  \n|---|---|  \n|  |  |");
+        cursor.insertText("|" + cursor.selectedText()+ "|  |\n|---|---|  \n|  |  |");
 }
 void MainWindow::Link()
 {
