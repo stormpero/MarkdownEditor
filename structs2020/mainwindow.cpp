@@ -86,7 +86,6 @@ void MainWindow::InitialiseConnections()
         }
         if(htmlPreview->isVisible())
         {
-            m_content.setText(MarkdowntextEdit->toPlainText());
             Preview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
             {
                 QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");

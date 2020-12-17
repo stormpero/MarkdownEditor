@@ -24,7 +24,19 @@ void MainWindow::initializationCSS()
                            "    subcontrol-origin: margin;"
                            "}");
 
+    QString backgroundStyle(
+                            "border-radius:10px;"
+                             "border: 2px solid #c6c6c6"
+
+                            );
+    centralWidget()->setStyleSheet("background-color: #F0F5F9");
+
+    //WorkToolBar->setStyleSheet("background-color: #C9D6DF");
+
     MarkdowntextEdit->setStyleSheet(verticalScroll);
     Preview->setStyleSheet(verticalScroll);
     htmlPreview->setStyleSheet(verticalScroll);
+
+    MarkdowntextEdit->setStyleSheet(backgroundStyle);
+    htmlPreview->setStyleSheet(backgroundStyle);
 }
