@@ -19,5 +19,6 @@
         <file>img/header.png</file>
         <file>img/Toolbar/help.ico</file>
         <file>img/Toolbar/markdownhelp.ico</file>
+        <file>fon.jpg</file>
     </qresource>
 </RCC>
