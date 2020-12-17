@@ -53,19 +53,13 @@ void MainWindow::IntitialiseApp()
 
 void MainWindow::CreateToolBars()
 {
-//    QHBoxLayout *toolBarLayout = new QHBoxLayout(topLevelWidget());
-//    WorkToolBar = createWorkToolBar();
-//    toolBarLayout->addWidget(createMainToolBar());
-//    toolBarLayout->addWidget(WorkToolBar);
-//    toolBarLayout->addWidget(createExtraToolBar());
-//    toolBarLayout->addWidget(createNavigationToolBar());
-
     addToolBar(Qt::TopToolBarArea,createMainToolBar());
     WorkToolBar = createWorkToolBar();
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
+    addToolBarBreak();
+    addToolBar(Qt::TopToolBarArea, createNavigationToolBar());
     WorkToolBar->setDisabled(true);
-    addToolBar(Qt::BottomToolBarArea, createNavigationToolBar());
     disableMenu(true);
 }
 

@@ -76,14 +76,6 @@ QToolBar* MainWindow::createNavigationToolBar()
     bar->addAction(QPixmap(":/img/Navigation_toolbar/link.ico"), "Ссылка", this, SLOT());
     bar->addAction(QPixmap(":/img/Navigation_toolbar/image.ico"), "Вставить картинку", this, SLOT());
 
-    markdown_ico->setDisabled(true);
-    html_ico->setDisabled(true);
-    text_ico->setDisabled(true);
-
-    markdown_ico->setCheckable(true);
-    html_ico->setCheckable(true);
-    text_ico->setCheckable(true);
-
     bar->setLayoutDirection(Qt::LeftToRight);
     bar->setMovable(false);
     bar->setIconSize(QSize(15,15));
