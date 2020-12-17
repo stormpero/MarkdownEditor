@@ -32,7 +32,6 @@ void MainWindow::IntitialiseApp()
     Preview = new QWebEngineView;
     htmlPreview = new QTextBrowserFixed;
 
-
     PreviewPage *page = new PreviewPage(this);
     Preview->setPage(page);
 
@@ -43,9 +42,9 @@ void MainWindow::IntitialiseApp()
 
     Preview->setUrl(QUrl("qrc:/index.html"));
 
-    ui->boxl->addWidget(MarkdowntextEdit);
-    ui->boxl->addWidget(Preview);
-    ui->boxl->addWidget(htmlPreview);
+    ui->horizontalLayout->addWidget(MarkdowntextEdit);
+    ui->horizontalLayout->addWidget(Preview);
+    ui->horizontalLayout->addWidget(htmlPreview);
 
     MarkdowntextEdit->hide();
     Preview->hide();
@@ -58,6 +57,8 @@ void MainWindow::CreateToolBars()
     WorkToolBar = createWorkToolBar();
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
+    addToolBarBreak();
+    addToolBar(Qt::TopToolBarArea, createNavigationToolBar());
     WorkToolBar->setDisabled(true);
     disableMenu(true);
 }

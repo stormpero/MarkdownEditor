@@ -19,6 +19,20 @@
         <file>img/header.png</file>
         <file>img/Toolbar/help.ico</file>
         <file>img/Toolbar/markdownhelp.ico</file>
+
+        <file>img/Navigation_toolbar/blockquote.png</file>
+        <file>img/Navigation_toolbar/bold.png</file>
+        <file>img/Navigation_toolbar/check_list.png</file>
+        <file>img/Navigation_toolbar/code.png</file>
+        <file>img/Navigation_toolbar/heading.png</file>
+        <file>img/Navigation_toolbar/image.ico</file>
+        <file>img/Navigation_toolbar/italic.png</file>
+        <file>img/Navigation_toolbar/link.ico</file>
+        <file>img/Navigation_toolbar/ordered_list.png</file>
+        <file>img/Navigation_toolbar/strikethrough.png</file>
+        <file>img/Navigation_toolbar/table.png</file>
+        <file>img/Navigation_toolbar/unordered_list.png</file>
+
         <file>fon.jpg</file>
     </qresource>
 </RCC>
