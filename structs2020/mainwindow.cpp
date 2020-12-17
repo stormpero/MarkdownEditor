@@ -35,7 +35,6 @@ void MainWindow::IntitialiseApp()
     PreviewPage *page = new PreviewPage(this);
     Preview->setPage(page);
 
-
     QWebChannel *channel = new QWebChannel(this);
     channel->registerObject(QStringLiteral("content"), &m_content);
     page->setWebChannel(channel);
