@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Create Texteditors & Textviews
     IntitialiseApp();
-    initializationCSS();
+
 
     //Create Toolbars
     CreateToolBars();
@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Make connections to events
     InitialiseConnections();
+
+    initializationCSS();
 }
 
 void MainWindow::IntitialiseApp()
@@ -35,7 +37,6 @@ void MainWindow::IntitialiseApp()
 
     PreviewPage *page = new PreviewPage(this);
     htmlWeb->setPage(page);
-
 
     QWebChannel *channel = new QWebChannel(this);
     channel->registerObject(QStringLiteral("content"), &m_content);

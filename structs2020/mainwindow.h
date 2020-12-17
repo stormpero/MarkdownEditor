@@ -12,7 +12,7 @@
 #include "document.h"
 #include "codeeditor.h"
 #include "qtextbrowserfixed.h"
-
+#include <QHBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

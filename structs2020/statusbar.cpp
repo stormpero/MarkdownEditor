@@ -5,5 +5,7 @@ void MainWindow::CreateStatusBar()
     fileSize = new QLabel;
     statusBar()->addWidget(fileSize);
     statusBar()->addWidget(cursorPosition);
+    cursorPosition->hide();
+    fileSize->hide();
     statusBar()->setLayoutDirection(Qt::LayoutDirection::RightToLeft);
 }

@@ -13,13 +13,11 @@
         <file>img/Toolbar/openfile.ico</file>
         <file>img/Toolbar/save.ico</file>
         <file>img/Toolbar/saveas.ico</file>
-        <file>img/Toolbar/tohtml.ico</file>
         <file>img/Toolbar/topdf.ico</file>
         <file>img/Toolbar/exit.ico</file>
         <file>img/header.png</file>
         <file>img/Toolbar/help.ico</file>
         <file>img/Toolbar/markdownhelp.ico</file>
-
         <file>img/Navigation_toolbar/blockquote.png</file>
         <file>img/Navigation_toolbar/bold.png</file>
         <file>img/Navigation_toolbar/check_list.png</file>
@@ -32,7 +30,8 @@
         <file>img/Navigation_toolbar/strikethrough.png</file>
         <file>img/Navigation_toolbar/table.png</file>
         <file>img/Navigation_toolbar/unordered_list.png</file>
-
-        <file>fon.jpg</file>
+        <file>img/Toolbar/htmlView.png</file>
+        <file>styles.css</file>
+        <file>img/Toolbar/tohtml.ico</file>
     </qresource>
 </RCC>

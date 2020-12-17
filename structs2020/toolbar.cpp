@@ -33,7 +33,7 @@ QToolBar* MainWindow::createWorkToolBar()
 QToolBar* MainWindow::createExtraToolBar()
 {
     QToolBar* bar = new QToolBar("Extra ToolBar");
-    html_ico = bar->addAction(QPixmap(":/img/Toolbar/extra_html.ico"), "Предпросмотр Html", this, SLOT(HtmlCheck()));
+    html_ico = bar->addAction(QPixmap("://img/Toolbar/htmlView.png"), "Предпросмотр Html", this, SLOT(HtmlCheck()));
     text_ico = bar->addAction(QPixmap(":/img/Toolbar/extra_txt.ico"), "Предпросмотр", this, SLOT(PreviewCheck()));
     markdown_ico = bar->addAction(QPixmap(":/img/Toolbar/extra_markdown.ico"), "Редактор Markdown", this, SLOT(MarkdowneditCheck()));
 
@@ -99,6 +99,8 @@ void MainWindow::CreateNewFile()
     markdown_ico->setChecked(true);
     MarkdowntextEdit->clear();
     MarkdowntextEdit->show();
+    cursorPosition->show();
+    fileSize->show();
     setWindowTitle(QString("new - Markdown Editor"));
 
     isChanged = false;
@@ -138,6 +140,9 @@ void MainWindow::OpenFile()
     disableMenu(false);
     markdown_ico->setChecked(true);
     MarkdowntextEdit->show();
+    cursorPosition->show();
+    fileSize->show();
+
     isChanged = false;
     justCreated = false;
 }

@@ -1,0 +1,54 @@
+QAbstractScrollArea
+{	
+    border-radius: 10px;
+    border: 2px solid #c6c6c6;
+    background: #FBF0F0;
+}
+/* Scrollbar */
+QScrollBar:vertical 
+{  
+    border: 0px solid #edf2fb;  
+    background:  #edf2fb;  
+    width: 13px;      
+    margin: 0px 0px 0px 0px;  
+}  
+
+QScrollBar::handle 
+{  
+    background: #edf2fb;  
+    border: 2px solid gray;  
+    border-radius: 6px;  
+}
+
+QStatusBar {
+    background: #E7E6E1;
+}
+
+QStatusBar::item {
+    border: 1px solid #0F2027;
+    border-radius: 2px;
+    color: #FFFFFF;
+}
+
+/* Menu */
+QMenu
+{
+    background-color: white;
+    margin: 2px; /* some spacing around the menu */
+}
+
+QMenu::item
+{
+    padding: 2px 25px 2px 20px;
+    border: 1px solid transparent; /* reserve space for selection border */
+}
+
+QMenu::item:selected
+{
+    border-color: #DBE2EF;
+    background: rgba(100, 100, 100, 150);
+}
+
+
+
+
