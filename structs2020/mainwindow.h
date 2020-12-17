@@ -100,6 +100,8 @@ private:
     */
     QToolBar* createWorkToolBar();
 
+    QToolBar* createNavigationToolBar();
+
 
 private:
     QToolBar *WorkToolBar; /*!< TODO: describe */

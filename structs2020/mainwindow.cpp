@@ -32,7 +32,6 @@ void MainWindow::IntitialiseApp()
     Preview = new QWebEngineView;
     htmlPreview = new QTextBrowserFixed;
 
-
     PreviewPage *page = new PreviewPage(this);
     Preview->setPage(page);
 
@@ -43,9 +42,9 @@ void MainWindow::IntitialiseApp()
 
     Preview->setUrl(QUrl("qrc:/index.html"));
 
-    ui->boxl->addWidget(MarkdowntextEdit);
-    ui->boxl->addWidget(Preview);
-    ui->boxl->addWidget(htmlPreview);
+    ui->horizontalLayout->addWidget(MarkdowntextEdit);
+    ui->horizontalLayout->addWidget(Preview);
+    ui->horizontalLayout->addWidget(htmlPreview);
 
     MarkdowntextEdit->hide();
     Preview->hide();
@@ -54,11 +53,19 @@ void MainWindow::IntitialiseApp()
 
 void MainWindow::CreateToolBars()
 {
+//    QHBoxLayout *toolBarLayout = new QHBoxLayout(topLevelWidget());
+//    WorkToolBar = createWorkToolBar();
+//    toolBarLayout->addWidget(createMainToolBar());
+//    toolBarLayout->addWidget(WorkToolBar);
+//    toolBarLayout->addWidget(createExtraToolBar());
+//    toolBarLayout->addWidget(createNavigationToolBar());
+
     addToolBar(Qt::TopToolBarArea,createMainToolBar());
     WorkToolBar = createWorkToolBar();
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     WorkToolBar->setDisabled(true);
+    addToolBar(Qt::BottomToolBarArea, createNavigationToolBar());
     disableMenu(true);
 }
 

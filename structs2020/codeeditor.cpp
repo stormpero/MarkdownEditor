@@ -14,6 +14,7 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 
 int CodeEditor::lineNumberAreaWidth()
 {
+    // this function calculate the lineNumberAreadWidth depending on number of numbers
     int digits = 1;
     int max = qMax(1, blockCount());
     while (max >= 10) {
