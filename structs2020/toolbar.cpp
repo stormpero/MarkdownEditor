@@ -57,31 +57,6 @@ QToolBar* MainWindow::createExtraToolBar()
     return bar;
 }
 
-QToolBar* MainWindow::createNavigationToolBar()
-{
-    QToolBar* bar = new QToolBar("Navigation ToolBar");
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/bold.png"), "Жирный текст", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/italic.png"), "Италик", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/heading.png"), "Заголовок", this, SLOT());
-
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/strikethrough.png"), "Зачёркнутый текст", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/unordered_list.png"), "Неупорядоченный список", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/ordered_list.png"), "Упорядоченный список", this, SLOT());
-
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/check_list.png"), "Контрольный лист", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/blockquote.png"), "Цитата", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/code.png"), "Код", this, SLOT());
-
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/table.png"), "Таблица", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/link.ico"), "Ссылка", this, SLOT());
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/image.ico"), "Вставить картинку", this, SLOT());
-
-    bar->setLayoutDirection(Qt::LeftToRight);
-    bar->setMovable(false);
-    bar->setIconSize(QSize(15,15));
-
-    return bar;
-}
 void MainWindow::MarkdowneditCheck()
 {
     MarkdowntextEdit->hide();
@@ -260,8 +235,10 @@ void MainWindow::ExportToPDF()
          Preview->setVisible(true);
          emit MarkdowntextEdit->textChanged();
      }
-    Preview->page()->printToPdf(filePath);
-    Preview->setVisible(false);
+     QPrinter printer(QPrinter::HighResolution);
+     printer.setOutputFormat(QPrinter::PdfFormat);
+     printer.setOutputFileName(filePath);
+     Preview->print(&printer);
 }
 
 void MainWindow::ExportHtml()
@@ -300,6 +277,8 @@ void MainWindow::MarkdownHelp()
 {
     QDesktopServices::openUrl(QUrl("https://www.markdownguide.org/"));
 }
+
+
 
 void MainWindow::closeEvent(QCloseEvent *event)
  {

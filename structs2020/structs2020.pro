@@ -24,7 +24,8 @@ SOURCES += \
     previewpage.cpp \
     qtextbrowserfixed.cpp \
     statusbar.cpp \
-    toolbar.cpp
+    toolbar.cpp \
+    toolbar_text.cpp
 
 HEADERS += \
     codeeditor.h \
