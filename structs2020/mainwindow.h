@@ -146,16 +146,6 @@ private slots:
      \brief Вставить изображение
 
     */
-    void InsertImg();
-    /*!
-     \brief Вставить ссылку
-
-    */
-    void InsertLink();
-    /*!
-     \brief Экспорт в PDF
-
-    */
     void ExportToPDF();
     /*!
      \brief Экспорт в HTML

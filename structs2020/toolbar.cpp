@@ -22,11 +22,6 @@ QToolBar* MainWindow::createWorkToolBar()
 
     bar->addSeparator();
 
-    bar->addAction(QPixmap(":/img/Toolbar/image.ico"), "Вставить изображение", this, SLOT(InsertImg()));
-    bar->addAction(QPixmap(":/img/Toolbar/link.ico"), "Вставить ссылку", this, SLOT(InsertLink()));
-
-    bar->addSeparator();
-
     bar->addAction(QPixmap(":/img/Toolbar/topdf.ico"), "Экспорт в pdf", this, SLOT(ExportToPDF()));
     bar->addAction(QPixmap(":/img/Toolbar/tohtml.ico"), "Экспорт в html", this, SLOT(ExportHtml()));
 
@@ -198,28 +193,6 @@ int MainWindow::SaveFileAs() // 1 - saveas | 0 - no save | -1 - cancel
     justCreated = false;
 
     return 1;
-}
-
-void MainWindow::InsertImg()
-{
-    QString filePath = QFileDialog::getOpenFileName(0, "Выберите картинку", QDir::homePath(), "Images (*.png *.xpm *.jpg)");
-    if(filePath.isEmpty())
-    {
-        qDebug() << "Read and write paths are empty";
-        return;
-    }
-    QFileInfo img(filePath);
-    QString fileName = img.fileName();
-    QTextCursor cursor = MarkdowntextEdit->textCursor();
-    MarkdowntextEdit->insertPlainText(QString("![%2](%1)").arg(filePath).arg(fileName.left(fileName.indexOf("."))));
-}
-
-void MainWindow::InsertLink()
-{
-    bool ok;
-    QString text = QInputDialog::getText( this,"Markdown Editor","Введите ссылку:",QLineEdit::Normal,"",&ok,Qt::Window);
-    if (ok && !text.isEmpty())
-         MarkdowntextEdit->insertPlainText(QString("[Название](%1)").arg(text));
 }
 
 void MainWindow::ExportToPDF()
