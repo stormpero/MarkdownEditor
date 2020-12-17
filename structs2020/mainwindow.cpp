@@ -29,17 +29,18 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::IntitialiseApp()
 {
     MarkdowntextEdit = new CodeEditor;
-    Preview = new QWebEngineView;
+    Preview = new QTextBrowserFixed;
     htmlPreview = new QTextBrowserFixed;
+    htmlWeb = new QWebEngineView;
 
     PreviewPage *page = new PreviewPage(this);
-    Preview->setPage(page);
+    htmlWeb->setPage(page);
 
     QWebChannel *channel = new QWebChannel(this);
     channel->registerObject(QStringLiteral("content"), &m_content);
     page->setWebChannel(channel);
 
-    Preview->setUrl(QUrl("qrc:/index.html"));
+    htmlWeb->setUrl(QUrl("qrc:/index.html"));
 
     ui->horizontalLayout->addWidget(MarkdowntextEdit);
     ui->horizontalLayout->addWidget(Preview);
@@ -75,12 +76,12 @@ void MainWindow::InitialiseConnections()
         // Check if htmlPreview or Preview are visible. Only after that convert the text
         if(Preview->isVisible())
         {
-            m_content.setText(MarkdowntextEdit->toPlainText());
+            Preview->setMarkdown(MarkdowntextEdit->toPlainText());
         }
         if(htmlPreview->isVisible())
         {
             m_content.setText(MarkdowntextEdit->toPlainText());
-            Preview->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
+            htmlWeb->page()->runJavaScript("document.documentElement.outerHTML", [this](const QVariant &v)
             {
                 QRegExp rxlen("<div id=\"placeholder\">(.*)</div>");
                 rxlen.indexIn(v.toString());

@@ -179,6 +179,20 @@ private slots:
     */
     void closeEvent(QCloseEvent *event);
 
+private slots:
+    //Navigation toolbar slots
+    void BoldText();
+    void ItalicText();
+    void Heading();
+    void StrikeThrough();
+    void UnorderedList();
+    void OrderedList();
+    void CheckList();
+    void BlockQuote();
+    void Code();
+    void Table();
+    void Link();
+    void Image();
 private:
     /*!
      \brief Вывод диалогового окно
@@ -191,8 +205,9 @@ private:
 
 private:
     CodeEditor *MarkdowntextEdit; /*!< Редактор Markdown*/
-    QWebEngineView* Preview; /*!< Предпросмотр */
+    QTextBrowserFixed* Preview; /*!< Предпросмотр */
     QTextBrowserFixed* htmlPreview; /*!< Предпросмотр HTML */
+    QWebEngineView* htmlWeb;
 
     QAction* html_ico; /*!< Кнопка отображения HTML */
     QAction* text_ico; /*!< Кнопка отображения текста */
