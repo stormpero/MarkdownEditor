@@ -30,7 +30,7 @@ QToolBar* MainWindow::createWorkToolBar()
     bar->addAction(QPixmap(":/img/Toolbar/topdf.ico"), "Экспорт в pdf", this, SLOT(ExportToPDF()));
     bar->addAction(QPixmap(":/img/Toolbar/tohtml.ico"), "Экспорт в html", this, SLOT(ExportHtml()));
 
-    bar->setMovable(false);
+    bar->setMovable(true);
     bar->setIconSize(QSize(25,25));
     return bar;
 }

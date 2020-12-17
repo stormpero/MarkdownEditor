@@ -2,7 +2,11 @@
 
 void MainWindow::initializationCSS()
 {
-    QString verticalScroll("QScrollBar:vertical {"
+    QString verticalScroll("QPlainTextEdit{"
+                           "border-radius:10px;"
+                           "border: 2px solid #c6c6c6"
+                           "}"
+                           "QScrollBar:vertical {"
                            "    border: 0px solid #c6c6c6;"
                            "    background: transparent;"
                            "    width: 13px;    "
@@ -33,10 +37,14 @@ void MainWindow::initializationCSS()
 
     //WorkToolBar->setStyleSheet("background-color: #C9D6DF");
 
-    MarkdowntextEdit->setStyleSheet(verticalScroll);
+    MarkdowntextEdit->setStyleSheet(verticalScroll + backgroundStyle);
     Preview->setStyleSheet(verticalScroll);
     htmlPreview->setStyleSheet(verticalScroll);
 
-    MarkdowntextEdit->setStyleSheet(backgroundStyle);
+    QFont font("Courier New");
+    font.setStyleHint(QFont::Monospace);
+    MarkdowntextEdit->setFont(font);
+
     htmlPreview->setStyleSheet(backgroundStyle);
+    Preview->setStyleSheet(backgroundStyle);
 }
