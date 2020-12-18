@@ -221,7 +221,7 @@ void MainWindow::ExportToPDF()
 
 void MainWindow::ExportHtml()
 {
-    QString fileName = QFileDialog::getSaveFileName(0, "Экспорт","", "*.html");
+    QString fileName = QFileDialog::getSaveFileName(0, "Экспорт в HTML","", "*.html");
 
     if(fileName.isEmpty())
     {

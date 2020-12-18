@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     //Create Texteditors & Textviews
     IntitialiseApp();
 
-
     //Create Toolbars
     CreateToolBars();
 
@@ -73,7 +72,7 @@ void MainWindow::InitialiseConnections()
         if(!isChanged)
         {
             isChanged = true;
-            setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
+            setWindowTitle(QString("*%1 - Markdown Editor").arg(justCreated ? "new" : file.fileName()));
         }
         // Check if htmlPreview or Preview are visible. Only after that convert the text
         if(Preview->isVisible())
@@ -105,15 +104,14 @@ void MainWindow::InitialiseConnections()
     connect(ui->action_save, SIGNAL(triggered()), this, SLOT(SaveFile()));
     connect(ui->action_saveAs, SIGNAL(triggered()), this, SLOT(SaveFileAs()));
 
-    connect(ui->action_link, SIGNAL(triggered()), this, SLOT(InsertLink()));
-    connect(ui->action_img, SIGNAL(triggered()), this, SLOT(InsertImg()));
+    connect(ui->action_link, SIGNAL(triggered()), this, SLOT(Link()));
+    connect(ui->action_img, SIGNAL(triggered()), this, SLOT(Image()));
 
     connect(ui->action_markdownhelp, SIGNAL(triggered()), this, SLOT(MarkdownHelp()));
     connect(ui->action_aboutProgram, SIGNAL(triggered()), this, SLOT(AboutProgram()));
 
     connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
 }
-
 
 MainWindow::~MainWindow()
 {
