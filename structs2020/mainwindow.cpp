@@ -73,7 +73,7 @@ void MainWindow::InitialiseConnections()
         if(!isChanged)
         {
             isChanged = true;
-            setWindowTitle(QString("*%1 - Markdown Editor").arg(file.fileName().isEmpty() ? "new" : file.fileName()));
+            setWindowTitle(QString("*%1 - Markdown Editor").arg(justCreated ? "new" : file.fileName()));
         }
         // Check if htmlPreview or Preview are visible. Only after that convert the text
         if(Preview->isVisible())
