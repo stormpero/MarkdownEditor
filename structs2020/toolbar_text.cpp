@@ -12,7 +12,7 @@ QToolBar* MainWindow::createNavigationToolBar()
     bar->addAction(QPixmap(":/img/Navigation_toolbar/ordered_list.png"), "Упорядоченный список", this, SLOT(OrderedList()));
 
     bar->addAction(QPixmap(":/img/Navigation_toolbar/check_list.png"), "Контрольный лист", this, SLOT(CheckList()));
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/blockqBlockquoteuote.png"), "Цитата", this, SLOT(BlockQuote()));
+    bar->addAction(QPixmap(":/img/Navigation_toolbar/blockquote.png"), "Цитата", this, SLOT(BlockQuote()));
     bar->addAction(QPixmap(":/img/Navigation_toolbar/code.png"), "Код", this, SLOT(Code()));
 
     bar->addAction(QPixmap(":/img/Navigation_toolbar/table.png"), "Таблица", this, SLOT(Table()));
@@ -59,21 +59,17 @@ void MainWindow::Heading()
     QTextCursor cursor = MarkdowntextEdit->textCursor();
 
     QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text();
-
     QRegExp rxlen("^(#*)(.*)$");
     rxlen.indexIn(text);
-    qDebug() << text;
-    qDebug() << cursor.blockNumber();
-    qDebug() << rxlen.cap(1);
     qDebug() << rxlen.cap(2);
+
     int size  = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text().size();
 
     if(rxlen.cap(1).size() == 0)
     {
-        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::MoveAnchor, 0);
-        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor, size);
-//        cursor.setPosition(0);
-//        cursor.setPosition(size, QTextCursor::KeepAnchor);
+
+        cursor.setPosition(cursor.block().position());
+        cursor.setPosition(cursor.block().position() + size, QTextCursor::KeepAnchor);
         if(size == 0)
         {
             cursor.insertText("# Heading");
@@ -85,10 +81,8 @@ void MainWindow::Heading()
     }
     else
     {
-        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::MoveAnchor, 0);
-        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor, size);
-//        cursor.setPosition(0);
-//        cursor.setPosition(size, QTextCursor::KeepAnchor);
+        cursor.setPosition(cursor.block().position());
+        cursor.setPosition(cursor.block().position() + size, QTextCursor::KeepAnchor);
         if(rxlen.cap(1).size() == 6)
         {
             cursor.insertText(rxlen.cap(2));
