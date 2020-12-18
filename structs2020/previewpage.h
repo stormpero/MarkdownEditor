@@ -5,7 +5,7 @@
 #include <QDesktopServices>
 
 /*!
- \brief
+ \brief Страница, которая представляет переведённый в html код markdown
 
 */
 class PreviewPage : public QWebEnginePage
@@ -13,7 +13,7 @@ class PreviewPage : public QWebEnginePage
     Q_OBJECT
 public:
     /*!
-     \brief
+     \brief Конструктор
 
      \param parent
     */
@@ -21,7 +21,7 @@ public:
 
 protected:
     /*!
-     \brief
+     \brief Открывает ссылку
 
      \param url
      \param type

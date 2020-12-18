@@ -10,7 +10,7 @@ class LineNumberArea;
 
 
 /*!
- \brief
+ \brief Переопределённый класс QPlainTextEdit, в котором добавляется lineNumberArea
 
 */
 class CodeEditor : public QPlainTextEdit
@@ -19,33 +19,33 @@ class CodeEditor : public QPlainTextEdit
 
 public:
     /*!
-     \brief
+     \brief Конструктор
 
      \param parent
     */
     CodeEditor(QWidget *parent = nullptr);
 
     /*!
-     \brief
+     \brief Переопределённый метод отображения текстового поля, в котором обрабатывается "рисуется" lineNumberArea
 
      \param event
     */
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     /*!
-     \brief
+     \brief Здесь рассчитывается ширина lineNumberArea
 
      \return int
     */
     int lineNumberAreaWidth();
     /*!
-     \brief
+     \brief Переопределённый ивент прокутки колёсика мыши. В нём добавлено сочетание клавиш ctrl + колёсико мыши(увеличения изображения)
 
      \param event
     */
     void wheelEvent(QWheelEvent *event) override;
 protected:
     /*!
-     \brief
+     \brief Здесь выставляется рассчитанная ширина lineNumberArea
 
      \param event
     */
@@ -53,18 +53,18 @@ protected:
 
 private slots:
     /*!
-     \brief
+     \brief Обновить ширину lineNumberArea
 
      \param newBlockCount
     */
     void updateLineNumberAreaWidth(int newBlockCount);
     /*!
-     \brief
+     \brief Подсвечивание текущей линии
 
     */
     void highlightCurrentLine();
     /*!
-     \brief
+     \brief Обновить lineNumberArea
 
      \param rect
      \param dy
@@ -72,23 +72,23 @@ private slots:
     void updateLineNumberArea(const QRect &rect, int dy);
 
 private:
-    QWidget *lineNumberArea; /*!< TODO: describe */
-    int lineNumberAreaFontSize = 8; /*!< TODO: describe */
+    QWidget *lineNumberArea; /*!< Сам виджет lineNumberArea */
+    int lineNumberAreaFontSize = 8; /*!< Размер шрифта lineNumberArea */
 
-    QPainter *painter; /*!< TODO: describe */
+    QPainter *painter; /*!< Рисовальщик */
 
 
 };
 
 /*!
- \brief
+ \brief Класс, который хранит настройки lineNumberArea
 
 */
 class LineNumberArea : public QWidget
 {
 public:
     /*!
-     \brief
+     \brief Конструктор
 
      \param editor
     */

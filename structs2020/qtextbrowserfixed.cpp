@@ -1,5 +1,5 @@
 #include "qtextbrowserfixed.h"
-#include <QDebug>
+
 QTextBrowserFixed::QTextBrowserFixed(QWidget *parent) : QTextBrowser(parent)
 {}
 

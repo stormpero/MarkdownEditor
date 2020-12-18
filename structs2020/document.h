@@ -5,7 +5,7 @@
 #include <QString>
 
 /*!
- \brief
+ \brief Класс документ. Используется для получения html кода страницы
 
 */
 class Document : public QObject
@@ -14,14 +14,14 @@ class Document : public QObject
     Q_PROPERTY(QString text MEMBER m_text NOTIFY textChanged FINAL)
 public:
     /*!
-     \brief
+     \brief Конструктор
 
      \param parent
     */
     explicit Document(QObject *parent = nullptr) : QObject(parent) {}
 
     /*!
-     \brief
+     \brief Ставит текст в m_text
 
      \param text
     */
@@ -29,14 +29,14 @@ public:
 
 signals:
     /*!
-     \brief
+     \brief Если текст изменится
 
      \param text
     */
     void textChanged(const QString &text);
 
 private:
-    QString m_text; /*!< TODO: describe */
+    QString m_text; /*!< Текст, который будет передаваться в index.html для дальнейшего преобразование в html код */
 };
 
 #endif // DOCUMENT_H

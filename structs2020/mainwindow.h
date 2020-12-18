@@ -12,7 +12,6 @@
 #include "document.h"
 #include "codeeditor.h"
 #include "qtextbrowserfixed.h"
-#include <QHBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -104,9 +103,9 @@ private:
 
 
 private:
-    QToolBar *WorkToolBar; /*!< TODO: describe */
+    QToolBar *WorkToolBar; /*!< Рабочая панель */
     QToolBar *TextToolBar; /*!< TODO: describe */
-    Document m_content; /*!< TODO: describe */
+    Document m_content; /*!< Документ хранящий в себе текст, который будет переведен в html код */
 
 
 private slots:
@@ -173,62 +172,62 @@ private slots:
 private slots:
     //Navigation toolbar slots
     /*!
-     \brief
+     \brief Жирный текст
 
     */
     void BoldText();
     /*!
-     \brief
+     \brief Курсив
 
     */
     void ItalicText();
     /*!
-     \brief
+     \brief Заголовок
 
     */
     void Heading();
     /*!
-     \brief
+     \brief Зачёркнутый текст
 
     */
     void StrikeThrough();
     /*!
-     \brief
+     \brief Неупорядоченный список
 
     */
     void UnorderedList();
     /*!
-     \brief
+     \brief Упорядоченный список
 
     */
     void OrderedList();
     /*!
-     \brief
+     \brief Контрольный список
 
     */
     void CheckList();
     /*!
-     \brief
+     \brief Цитата
 
     */
     void BlockQuote();
     /*!
-     \brief
+     \brief Код
 
     */
     void Code();
     /*!
-     \brief
+     \brief Таблица
 
     */
     void Table();
     /*!
-     \brief
+     \brief Ссылка
 
     */
     void Link();
     /*!
-     \brief
+     \brief Изображение
 
     */
     void Image();

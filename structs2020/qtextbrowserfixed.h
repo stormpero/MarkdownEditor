@@ -6,21 +6,22 @@
 #include <QTextBlock>
 
 /*!
- \brief
+ \brief Исправленный QTextBrowser
 
 */
 class QTextBrowserFixed : public QTextBrowser
 {
+
 public:
     /*!
-     \brief
+     \brief Конструктор
 
      \param parent
     */
     QTextBrowserFixed(QWidget *parent = nullptr);
 
     /*!
-     \brief
+     \brief Исправленный ивент прокрутки колеса и сочетание ctrl + колесо мыши
 
      \param event
     */
