@@ -172,17 +172,65 @@ private slots:
 
 private slots:
     //Navigation toolbar slots
+    /*!
+     \brief
+
+    */
     void BoldText();
+    /*!
+     \brief
+
+    */
     void ItalicText();
+    /*!
+     \brief
+
+    */
     void Heading();
+    /*!
+     \brief
+
+    */
     void StrikeThrough();
+    /*!
+     \brief
+
+    */
     void UnorderedList();
+    /*!
+     \brief
+
+    */
     void OrderedList();
+    /*!
+     \brief
+
+    */
     void CheckList();
+    /*!
+     \brief
+
+    */
     void BlockQuote();
+    /*!
+     \brief
+
+    */
     void Code();
+    /*!
+     \brief
+
+    */
     void Table();
+    /*!
+     \brief
+
+    */
     void Link();
+    /*!
+     \brief
+
+    */
     void Image();
 private:
     /*!
