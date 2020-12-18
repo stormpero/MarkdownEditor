@@ -37,15 +37,15 @@ void MainWindow::updateFileSize()
 {
     int fileSize = MarkdowntextEdit->toPlainText().size();
     QString unit = "Б";
-    if (fileSize > KB)
-    {
-        fileSize /= KB;
-        unit = "КБ";
-    }
-    else if (fileSize > MB)
+    if (fileSize > MB)
     {
         fileSize /= MB;
         unit = "МБ";
+    }
+    else if (fileSize > KB)
+    {
+        fileSize /= KB;
+        unit = "КБ";
     }
    MainWindow::fileSize->setText(QString("Размер файла: %1 %2").arg(fileSize).arg(unit));
 }

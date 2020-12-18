@@ -57,21 +57,44 @@ void MainWindow::ItalicText()
 void MainWindow::Heading()
 {
     QTextCursor cursor = MarkdowntextEdit->textCursor();
-    int size = 7;
-    if(cursor.selectedText().size() == 0)
+
+    QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text();
+
+    QRegExp rxlen("^(#*)(.*)$");
+    rxlen.indexIn(text);
+    qDebug() << text;
+    qDebug() << cursor.blockNumber();
+    qDebug() << rxlen.cap(1);
+    qDebug() << rxlen.cap(2);
+    int size  = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text().size();
+
+    if(rxlen.cap(1).size() == 0)
     {
-         cursor.insertText("#" + QString("Heading"));
-         cursor.setPosition(cursor.position() - size);
-         cursor.setPosition(cursor.position() + size, QTextCursor::KeepAnchor);
-         MarkdowntextEdit->setTextCursor(cursor);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::MoveAnchor, 0);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor, size);
+//        cursor.setPosition(0);
+//        cursor.setPosition(size, QTextCursor::KeepAnchor);
+        if(size == 0)
+        {
+            cursor.insertText("# Heading");
+        }
+        else
+        {
+            cursor.insertText("# " + rxlen.cap(2));
+        }
     }
     else
     {
-        int size = cursor.selectedText().size();
-        cursor.insertText("#" + cursor.selectedText());
-        cursor.setPosition(cursor.position() - size);
-        cursor.setPosition(cursor.position() + size, QTextCursor::KeepAnchor);
-        MarkdowntextEdit->setTextCursor(cursor);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::MoveAnchor, 0);
+        cursor.movePosition(QTextCursor::StartOfLine, QTextCursor::KeepAnchor, size);
+//        cursor.setPosition(0);
+//        cursor.setPosition(size, QTextCursor::KeepAnchor);
+        if(rxlen.cap(1).size() == 6)
+        {
+            cursor.insertText(rxlen.cap(2));
+        }
+        else
+            cursor.insertText("#" + rxlen.cap(1) + rxlen.cap(2));
     }
 }
 void MainWindow::StrikeThrough()
