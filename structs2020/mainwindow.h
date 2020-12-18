@@ -105,6 +105,7 @@ private:
 
 private:
     QToolBar *WorkToolBar; /*!< TODO: describe */
+    QToolBar *TextToolBar; /*!< TODO: describe */
     Document m_content; /*!< TODO: describe */
 
 

@@ -12,7 +12,7 @@ QToolBar* MainWindow::createNavigationToolBar()
     bar->addAction(QPixmap(":/img/Navigation_toolbar/ordered_list.png"), "Упорядоченный список", this, SLOT(OrderedList()));
 
     bar->addAction(QPixmap(":/img/Navigation_toolbar/check_list.png"), "Контрольный лист", this, SLOT(CheckList()));
-    bar->addAction(QPixmap(":/img/Navigation_toolbar/blockqBlockquoteuote.png"), "Цитата", this, SLOT(BlockQuote()));
+    bar->addAction(QPixmap(":/img/Navigation_toolbar/blockquote.png"), "Цитата", this, SLOT(BlockQuote()));
     bar->addAction(QPixmap(":/img/Navigation_toolbar/code.png"), "Код", this, SLOT(Code()));
 
     bar->addAction(QPixmap(":/img/Navigation_toolbar/table.png"), "Таблица", this, SLOT(Table()));
@@ -20,7 +20,7 @@ QToolBar* MainWindow::createNavigationToolBar()
     bar->addAction(QPixmap(":/img/Navigation_toolbar/image.ico"), "Вставить картинку", this, SLOT(Image()));
 
     bar->setLayoutDirection(Qt::LeftToRight);
-    bar->setMovable(true);
+    bar->setMovable(false);
     bar->setIconSize(QSize(16,16));
 
     return bar;

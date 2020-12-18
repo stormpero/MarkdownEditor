@@ -93,6 +93,7 @@ void MainWindow::CreateNewFile()
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);    
     WorkToolBar->setDisabled(false);
+    TextToolBar->setDisabled(false);
 
     disableMenu(false);
 
@@ -101,6 +102,7 @@ void MainWindow::CreateNewFile()
     MarkdowntextEdit->show();
     cursorPosition->show();
     fileSize->show();
+
     setWindowTitle(QString("new - Markdown Editor"));
 
     isChanged = false;
@@ -130,18 +132,18 @@ void MainWindow::OpenFile()
 
     MarkdowntextEdit->setPlainText(file.readAll());
 
-    setWindowTitle(QString("%1 - Markdown Editor").arg(file.fileName()));
-
     markdown_ico->setDisabled(false);
     html_ico->setDisabled(false);
     text_ico->setDisabled(false);
     WorkToolBar->setDisabled(false);
-
+    TextToolBar->setDisabled(false);
     disableMenu(false);
     markdown_ico->setChecked(true);
     MarkdowntextEdit->show();
     cursorPosition->show();
     fileSize->show();
+
+    setWindowTitle(QString("%1 - Markdown Editor").arg(file.fileName()));
 
     isChanged = false;
     justCreated = false;
