@@ -61,18 +61,19 @@ void MainWindow::Heading()
     QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text();
     QRegExp rxlen("^(#*)(.*)$");
     rxlen.indexIn(text);
-    qDebug() << rxlen.cap(2);
 
-    int size  = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text().size();
+    int size  = text.size();
 
     if(rxlen.cap(1).size() == 0)
     {
-
         cursor.setPosition(cursor.block().position());
         cursor.setPosition(cursor.block().position() + size, QTextCursor::KeepAnchor);
         if(size == 0)
         {
             cursor.insertText("# Heading");
+            cursor.setPosition(cursor.block().position() + 2);
+            cursor.setPosition(cursor.block().position() + 9, QTextCursor::KeepAnchor);
+            MarkdowntextEdit->setTextCursor(cursor);
         }
         else
         {
@@ -107,15 +108,60 @@ void MainWindow::StrikeThrough()
 }
 void MainWindow::UnorderedList()
 {
-
+    QTextCursor cursor = MarkdowntextEdit->textCursor();
+    QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text();
+    int size = text.size();
+    if(size == 0)
+    {
+        cursor.setPosition(cursor.block().position());
+        cursor.insertText("- List item");
+        cursor.setPosition(cursor.block().position() + 2);
+        cursor.setPosition(cursor.block().position() + 11, QTextCursor::KeepAnchor);
+        MarkdowntextEdit->setTextCursor(cursor);
+    }
+    else
+    {
+        cursor.setPosition(cursor.block().position());
+        cursor.insertText("- ");
+    }
 }
 void MainWindow::OrderedList()
 {
-
+    QTextCursor cursor = MarkdowntextEdit->textCursor();
+    QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text();
+    int size = text.size();
+    if(size == 0)
+    {
+        cursor.setPosition(cursor.block().position());
+        cursor.insertText("1. List item");
+        cursor.setPosition(cursor.block().position() + 3);
+        cursor.setPosition(cursor.block().position() + 12, QTextCursor::KeepAnchor);
+        MarkdowntextEdit->setTextCursor(cursor);
+    }
+    else
+    {
+        cursor.setPosition(cursor.block().position());
+        cursor.insertText("1. ");
+    }
 }
 void MainWindow::CheckList()
 {
-
+    QTextCursor cursor = MarkdowntextEdit->textCursor();
+    QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text();
+    int size = text.size();
+    if(size == 0)
+    {
+        cursor.setPosition(cursor.block().position());
+        cursor.insertText("- [ ] List item");
+        cursor.setPosition(cursor.block().position() + 6);
+        cursor.setPosition(cursor.block().position() + 15, QTextCursor::KeepAnchor);
+        MarkdowntextEdit->setTextCursor(cursor);
+    }
+    else
+    {
+        cursor.setPosition(cursor.block().position());
+        cursor.insertText("- [ ] ");
+    }
 }
 void MainWindow::BlockQuote()
 {
@@ -169,7 +215,14 @@ void MainWindow::Link()
     bool ok;
     QString text = QInputDialog::getText( this,"Markdown Editor","Введите ссылку:",QLineEdit::Normal,"",&ok,Qt::Window);
     if (ok && !text.isEmpty())
-         MarkdowntextEdit->insertPlainText(QString("[Название](%1)").arg(text));
+    {
+         QTextCursor cursor = MarkdowntextEdit->textCursor();
+         cursor.setPosition(cursor.position());
+         cursor.insertText(QString("[Название](%1)").arg(text));
+         cursor.setPosition(cursor.position() - (text.size() + 11));
+         cursor.setPosition(cursor.position()+ 8, QTextCursor::KeepAnchor);
+         MarkdowntextEdit->setTextCursor(cursor);
+    }
     Preview->setOpenExternalLinks(true);
     Preview->setOpenLinks(true);
 }
