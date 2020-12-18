@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     //Create Texteditors & Textviews
     IntitialiseApp();
 
-
     //Create Toolbars
     CreateToolBars();
 
