@@ -20,7 +20,7 @@ QToolBar* MainWindow::createNavigationToolBar()
     bar->addAction(QPixmap(":/img/Navigation_toolbar/image.ico"), "Вставить картинку", this, SLOT(Image()));
 
     bar->setLayoutDirection(Qt::LeftToRight);
-    bar->setMovable(true);
+    bar->setMovable(false);
     bar->setIconSize(QSize(16,16));
 
     return bar;

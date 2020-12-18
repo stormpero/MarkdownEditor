@@ -59,8 +59,10 @@ void MainWindow::CreateToolBars()
     addToolBar(Qt::TopToolBarArea,WorkToolBar);
     addToolBar(Qt::TopToolBarArea,createExtraToolBar());
     addToolBarBreak();
-    addToolBar(Qt::TopToolBarArea, createNavigationToolBar());
+    TextToolBar = createNavigationToolBar();
+    addToolBar(Qt::TopToolBarArea, TextToolBar);
     WorkToolBar->setDisabled(true);
+    TextToolBar->setDisabled(true);
     disableMenu(true);
 }
 
