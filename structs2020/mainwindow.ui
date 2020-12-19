@@ -29,9 +29,155 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_file">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="action_newFile"/>
+    <addaction name="action_openFile"/>
+    <addaction name="separator"/>
+    <addaction name="action_save"/>
+    <addaction name="action_saveAs"/>
+    <addaction name="separator"/>
+    <addaction name="action_toHTML"/>
+    <addaction name="action_toPDF"/>
+    <addaction name="separator"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_add">
+    <property name="title">
+     <string>Добавить</string>
+    </property>
+    <addaction name="action_link"/>
+    <addaction name="action_img"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="action_markdownhelp"/>
+    <addaction name="separator"/>
+    <addaction name="action_aboutProgram"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu_add"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_newFile">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/newfile.ico</normaloff>:/img/Toolbar/newfile.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Создать файл</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_openFile">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/openfile.ico</normaloff>:/img/Toolbar/openfile.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Открыть файл</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/save.ico</normaloff>:/img/Toolbar/save.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_saveAs">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/saveas.ico</normaloff>:/img/Toolbar/saveas.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить как...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+S</string>
+   </property>
+  </action>
+  <action name="action_toHTML">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/tohtml.ico</normaloff>:/img/Toolbar/tohtml.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Экспорт в HTML</string>
+   </property>
+  </action>
+  <action name="action_toPDF">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/topdf.ico</normaloff>:/img/Toolbar/topdf.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Экспорт в PDF</string>
+   </property>
+  </action>
+  <action name="action_link">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/link.ico</normaloff>:/img/Toolbar/link.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Ссылка</string>
+   </property>
+  </action>
+  <action name="action_img">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/image.ico</normaloff>:/img/Toolbar/image.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Изображение</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/exit.ico</normaloff>:/img/Toolbar/exit.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_aboutProgram">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/help.ico</normaloff>:/img/Toolbar/help.ico</iconset>
+   </property>
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
+  <action name="action_markdownhelp">
+   <property name="icon">
+    <iconset resource="resources/structs2020.qrc">
+     <normaloff>:/img/Toolbar/markdownhelp.ico</normaloff>:/img/Toolbar/markdownhelp.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Справочник Markdown</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/structs2020.qrc"/>
+ </resources>
  <connections/>
 </ui>

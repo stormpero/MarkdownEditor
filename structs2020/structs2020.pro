@@ -1,5 +1,4 @@
-QT       += core gui
-
+QT       += core gui webview webenginecore webenginewidgets printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -16,15 +15,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    helpers.cpp \
+    codeeditor.cpp \
+    css_styles.cpp \
+    document.cpp \
+    helpFunctions.cpp \
     main.cpp \
     mainwindow.cpp \
-    markdowntohtml.cpp \
-    toolbar.cpp
+    previewpage.cpp \
+    qtextbrowserfixed.cpp \
+    statusbar.cpp \
+    toolbar.cpp \
+    toolbar_text.cpp
 
 HEADERS += \
+    codeeditor.h \
+    document.h \
     mainwindow.h \
-    markdowntohtml.h
+    previewpage.h \
+    qtextbrowserfixed.h
 
 FORMS += \
     mainwindow.ui
@@ -35,4 +43,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resourse.qrc
+    resources/structs2020.qrc
+
+DISTFILES += \
+    html/index.html \
+    html/script.js \
+    html/showdown.js
