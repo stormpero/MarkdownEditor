@@ -267,5 +267,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
         return;
     }
+    file.close();
     QMainWindow::closeEvent(event);
  }

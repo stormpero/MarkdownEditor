@@ -223,8 +223,6 @@ void MainWindow::Link()
          cursor.setPosition(cursor.position()+ 8, QTextCursor::KeepAnchor);
          MarkdowntextEdit->setTextCursor(cursor);
     }
-    Preview->setOpenExternalLinks(true);
-    Preview->setOpenLinks(true);
 }
 void MainWindow::Image()
 {

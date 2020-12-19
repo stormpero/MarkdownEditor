@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+
 void MainWindow::CreateStatusBar()
 {
     cursorPosition = new QLabel;

@@ -34,6 +34,9 @@ void MainWindow::IntitialiseApp()
     htmlPreview = new QTextBrowserFixed;
     htmlWeb = new QWebEngineView;
 
+    Preview->setOpenLinks(false);
+    Preview->setOpenExternalLinks(false);
+
     PreviewPage *page = new PreviewPage(this);
     htmlWeb->setPage(page);
 
@@ -113,6 +116,14 @@ void MainWindow::InitialiseConnections()
     connect(ui->action_aboutProgram, SIGNAL(triggered()), this, SLOT(AboutProgram()));
 
     connect(ui->action_exit, SIGNAL(triggered()), this, SLOT(close()));
+
+    connect(Preview, &QTextBrowser::anchorClicked, [](const QUrl &link)
+    {
+        if(!QFileInfo(link.toString()).isDir())
+            QDesktopServices::openUrl(link);
+        else
+            QProcess::startDetached(QString("gnome-terminal --working-directory=%1").arg(link.toString()));
+    });
 }
 
 MainWindow::~MainWindow()
