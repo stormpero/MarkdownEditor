@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
                "qt", "_",
                QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
    {
-       qDebug() << "qtTranslator ok";
        a.installTranslator(&qtTranslator);
    }
 
@@ -18,7 +17,6 @@ int main(int argc, char *argv[])
    if (qtBaseTranslator.load("qtbase_" + QLocale::system().name(),
                QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
    {
-       qDebug() << "qtBaseTranslator ok";
        a.installTranslator(&qtBaseTranslator);
    }
 

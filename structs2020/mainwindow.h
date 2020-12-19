@@ -233,7 +233,7 @@ private slots:
     void Image();
 private:
     /*!
-     \brief Вывод диалогового окно
+     \brief Вывод диалогового окна
 
      \return int
     */

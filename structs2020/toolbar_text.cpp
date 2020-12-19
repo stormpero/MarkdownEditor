@@ -132,26 +132,48 @@ void MainWindow::OrderedList()
     int size = text.size();
     if(cursor.blockNumber() != 0)
     {
-        if(MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text().size() != 0)
-            return;
-        const QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() - 1 ).text();
-
-        QRegExp digits("^(\\d*)");
-        digits.indexIn(text);
-        if(digits.cap(1).size() != 0)
+        if(MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text().size() == 0)
         {
-            if(text.size() >(digits.cap(1).size() + 1) &&
-                    text[digits.cap(1).size()] == '.' &&
-                    text[digits.cap(1).size() + 1] == ' ')
+            const QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() - 1 ).text();
+
+            QRegExp digits("^(\\d*)");
+            digits.indexIn(text);
+            if(digits.cap(1).size() != 0)
             {
-                QString number = QString::number(digits.cap(1).toInt() + 1);
-                cursor.setPosition(cursor.block().position());
-                cursor.insertText(number + ". List item");
-                cursor.setPosition(cursor.block().position() + number.size() + 2);
-                cursor.setPosition(cursor.block().position() + number.size() + 11, QTextCursor::KeepAnchor);
-                MarkdowntextEdit->setTextCursor(cursor);
-                return;
+                if(text.size() >(digits.cap(1).size() + 1) &&
+                        text[digits.cap(1).size()] == '.' &&
+                        text[digits.cap(1).size() + 1] == ' ')
+                {
+                    QString number = QString::number(digits.cap(1).toInt() + 1);
+                    cursor.setPosition(cursor.block().position());
+                    cursor.insertText(number + ". List item");
+                    cursor.setPosition(cursor.block().position() + number.size() + 2);
+                    cursor.setPosition(cursor.block().position() + number.size() + 11, QTextCursor::KeepAnchor);
+                    MarkdowntextEdit->setTextCursor(cursor);
+                    return;
+                }
             }
+        }
+        else
+        {
+            const QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() - 1 ).text();
+
+            QRegExp digits("^(\\d*)");
+            digits.indexIn(text);
+
+            if(digits.cap(1).size() != 0)
+            {
+                if(text.size() >(digits.cap(1).size() + 1) &&
+                        text[digits.cap(1).size()] == '.' &&
+                        text[digits.cap(1).size() + 1] == ' ')
+                {
+                    QString number = QString::number(digits.cap(1).toInt() + 1);
+                    cursor.setPosition(cursor.block().position());
+                    cursor.insertText(number + ". ");
+                    return;
+                }
+            }
+
         }
     }
     if(size == 0)
