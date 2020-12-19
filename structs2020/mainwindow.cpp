@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -119,10 +118,59 @@ void MainWindow::InitialiseConnections()
 
     connect(Preview, &QTextBrowser::anchorClicked, [](const QUrl &link)
     {
-        if(!QFileInfo(link.toString()).isDir())
-            QDesktopServices::openUrl(link);
-        else
-            QProcess::startDetached(QString("gnome-terminal --working-directory=%1").arg(link.toString()));
+        QDesktopServices::openUrl(link);
+    });
+    connect(MarkdowntextEdit, &CodeEditor::blockCountChanged, [this]()
+    {
+        QTextCursor cursor = MarkdowntextEdit->textCursor();
+        if(cursor.blockNumber() != 0)
+        {
+            if(MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() ).text().size() != 0)
+                return;
+            const QString text = MarkdowntextEdit->document()->findBlockByLineNumber( cursor.blockNumber() - 1 ).text();
+            if(text.size() > 5
+                    && text[0] == '-'
+                    && text[1] == ' '
+                    && text[2] == '['
+                    && text[3] == ' '
+                    && text[4] == ']'
+                    && text[5] == ' ')
+            {
+                cursor.setPosition(cursor.block().position());
+                cursor.insertText("- [ ] List item");
+                cursor.setPosition(cursor.block().position() + 6);
+                cursor.setPosition(cursor.block().position() + 15, QTextCursor::KeepAnchor);
+                MarkdowntextEdit->setTextCursor(cursor);
+            }
+            else if(text.size() > 1 && text[0] == '-' && text[1] == ' ')
+            {
+                cursor.setPosition(cursor.block().position());
+                cursor.insertText("- List item");
+                cursor.setPosition(cursor.block().position() + 2);
+                cursor.setPosition(cursor.block().position() + 11, QTextCursor::KeepAnchor);
+                MarkdowntextEdit->setTextCursor(cursor);
+            }
+            else
+            {
+                QRegExp digits("^(\\d*)");
+                digits.indexIn(text);
+                if(digits.cap(1).size() != 0)
+                {
+                    if(text.size() >(digits.cap(1).size() + 1) &&
+                            text[digits.cap(1).size()] == '.' &&
+                            text[digits.cap(1).size() + 1] == ' ')
+                    {
+                        QString number = QString::number(digits.cap(1).toInt() + 1);
+                        cursor.setPosition(cursor.block().position());
+                        cursor.insertText(number + ". List item");
+                        cursor.setPosition(cursor.block().position() + number.size() + 2);
+                        cursor.setPosition(cursor.block().position() + number.size() + 11, QTextCursor::KeepAnchor);
+                        MarkdowntextEdit->setTextCursor(cursor);
+                    }
+                }
+            }
+        }
+
     });
 }
 
