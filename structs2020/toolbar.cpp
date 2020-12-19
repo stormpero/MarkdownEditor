@@ -258,8 +258,6 @@ void MainWindow::MarkdownHelp()
     QDesktopServices::openUrl(QUrl("https://www.markdownguide.org/"));
 }
 
-
-
 void MainWindow::closeEvent(QCloseEvent *event)
  {
     if (isChanged && (justCreated || file.isOpen()) && SaveDialog() == -1)
@@ -267,6 +265,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
         return;
     }
-    file.close();
+    if(file.isOpen())
+        file.close();
     QMainWindow::closeEvent(event);
  }
