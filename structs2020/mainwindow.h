@@ -104,7 +104,7 @@ private:
 
 private:
     QToolBar *WorkToolBar; /*!< Рабочая панель */
-    QToolBar *TextToolBar; /*!< TODO: describe */
+    QToolBar *TextToolBar; /*!< Панель инструментов */
     Document m_content; /*!< Документ хранящий в себе текст, который будет переведен в html код */
 
 
